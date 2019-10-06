@@ -8,8 +8,10 @@ project(agribot_bringup)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  agribot_descriptionagribot_map
-  agribot_msgsagribot_navigation
+  agribot_description
+  agribot_map
+  agribot_msgs
+  agribot_navigation
   agribot_simulation
 )
 

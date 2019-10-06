@@ -1,0 +1,12 @@
+<launch>
+
+
+    <include file="$(find agribot_description)/launch/robot_model.launch" />
+    <include file="$(find agribot_map)/launch/map_server.launch" />
+    <!-- <include file="$(find agribot_navigation)/launch/move_base.launch" /> -->
+    <include file="$(find agribot_simulation)/launch/gazebo.launch" />
+
+    <!-- <include file="$(find magellan_bringup)/launch/bringup_visualization.launch" /> -->
+
+
+</launch>
