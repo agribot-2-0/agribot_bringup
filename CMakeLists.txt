@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   agribot_description
   agribot_map
   agribot_msgs
-  agribot_navigation
   agribot_simulation
 )
 
