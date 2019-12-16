@@ -1,6 +1,5 @@
 <launch>
 
-
     <include file="$(find agribot_description)/launch/robot_model.launch" />
     <include file="$(find agribot_map)/launch/map_server.launch">
       <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
@@ -10,7 +9,7 @@
     </include>
     <include file="$(find agribot_simulation)/launch/gazebo.launch" />
 
-    <node name="inverse_kinematics_node" pkg="agribot_navigation" type="inverse_kinematics"/>
+    <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"
       required="true"/>
