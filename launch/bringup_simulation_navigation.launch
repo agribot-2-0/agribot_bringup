@@ -1,5 +1,4 @@
 <launch>
-
     <include file="$(find agribot_description)/launch/robot_model.launch" />
     <include file="$(find agribot_map)/launch/map_server.launch">
       <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
@@ -13,5 +12,4 @@
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"
       required="true"/>
-
 </launch>
