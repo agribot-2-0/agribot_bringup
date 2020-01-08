@@ -53,16 +53,19 @@
   <build_depend>agribot_map</build_depend>
   <build_depend>agribot_msgs</build_depend>
   <build_depend>agribot_navigation</build_depend>
+  <build_depend>agribot_teleop</build_depend>
   <build_depend>agribot_simulation</build_depend>
   <build_export_depend>agribot_description</build_export_depend>
   <build_export_depend>agribot_map</build_export_depend>
   <build_export_depend>agribot_msgs</build_export_depend>
   <build_export_depend>agribot_navigation</build_export_depend>
+  <build_export_depend>agribot_teleop</build_export_depend>
   <build_export_depend>agribot_simulation</build_export_depend>
   <exec_depend>agribot_description</exec_depend>
   <exec_depend>agribot_map</exec_depend>
   <exec_depend>agribot_msgs</exec_depend>
   <exec_depend>agribot_navigation</exec_depend>
+  <exec_depend>agribot_teleop</exec_depend>
   <exec_depend>agribot_simulation</exec_depend>
 
 
