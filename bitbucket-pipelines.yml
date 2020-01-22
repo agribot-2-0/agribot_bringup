@@ -1,0 +1,22 @@
+image: docker:git
+
+pipelines:
+  default:
+     - step:
+         services:
+           - docker
+         script:
+           - apk add --update bash coreutils tar
+           - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master
+           - git clone https://github.com/panpawelchmiel/agribot_description.git
+           - git clone https://github.com/panpawelchmiel/agribot_map.git
+           - git clone https://github.com/panpawelchmiel/agribot_msgs.git
+           - git clone https://github.com/panpawelchmiel/agribot_navigation.git
+           - git clone https://github.com/panpawelchmiel/agribot_teleop.git
+           - git clone https://github.com/panpawelchmiel/agribot_simulation.git
+           - .industrial_ci/bitbucket.sh ROS_DISTRO=melodic UPSTREAM_WORKSPACE="agribot_description agribot_map agribot_msgs agribot_teleop"
+
+definitions:
+  services:
+    docker:
+      memory: 2048

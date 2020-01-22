@@ -10,10 +10,10 @@ project(agribot_bringup)
 find_package(catkin REQUIRED COMPONENTS
   agribot_description
   agribot_map
-  agribot_msgs
-  ## agribot_navigation
+#  agribot_msgs
+#  agribot_navigation
   agribot_teleop
-  agribot_simulation
+#  agribot_simulation
 )
 
 ## System dependencies are found with CMake's conventions
