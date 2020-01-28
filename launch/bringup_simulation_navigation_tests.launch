@@ -12,6 +12,6 @@
 
     <include file="$(find agribot_navigation)/launch/path_publisher.launch"/>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation_tests.rviz"
       required="true"/>
 </launch>
