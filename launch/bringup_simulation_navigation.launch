@@ -9,7 +9,9 @@
     <include file="$(find agribot_simulation)/launch/gazebo.launch" />
 
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
+    <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"
       required="true"/>
+    <node name="navsatfix_to_local_node" pkg="agribot_commander" type="navsatfix_to_local_node"/>
 </launch>
