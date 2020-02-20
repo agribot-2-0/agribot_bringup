@@ -1,9 +1,7 @@
 <launch>
     <include file="$(find agribot_description)/launch/robot_model.launch" />
-    <include file="$(find agribot_simulation)/launch/gazebo.launch" />
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch" />
-    <include file="$(find agribot_teleop)/launch/teleop_keyboard.launch" />
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"/> -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/default.rviz"/>
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
+    <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"/>
 </launch>

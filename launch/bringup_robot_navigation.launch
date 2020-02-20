@@ -2,16 +2,15 @@
     <include file="$(find agribot_description)/launch/robot_model.launch" />
     <include file="$(find agribot_map)/launch/map_server.launch">
       <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
-      <!-- <arg name="map_file" value="$(find agribot_map)/maps/map_clean.yaml"/> -->
     </include>
     <include file="$(find agribot_navigation)/launch/move_base.launch">
-      <arg name="odom_topic" value="/agribot/odometry" />
+      <arg name="odom_topic" value="/agribot/odom/estimated" />
     </include>
-    <include file="$(find agribot_simulation)/launch/gazebo.launch" />
-
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
+    <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/default.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"
+      required="true"/>
     <node name="navsatfix_to_local_node" pkg="agribot_commander" type="navsatfix_to_local_node"/>
 </launch>
