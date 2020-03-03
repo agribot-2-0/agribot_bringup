@@ -1,7 +1,34 @@
 <launch>
+    <arg name="vis" default="false" />
+    <arg name="osm" default="false" />
+    <arg name="smach" default="false" />
+
+    <!-- Robot description -->
     <include file="$(find agribot_description)/launch/robot_model.launch" />
+
+    <!-- Navigation -->
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch" />
+
+    <!-- Localization -->
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
+
+    <!-- HAL -->
     <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz"/>
+
+    <!-- Visualization -->
+    <group if="$(arg vis)">
+        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
+            <arg name="osm" value="$(arg osm)" />
+        </include>
+    </group>
+
+    <!-- State machine -->
+    <group if="$(arg smach)">
+        <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch" />
+    </group>
+    <!-- or path_points_stuffer -->
+    <group unless="$(arg smach)">
+        <node name="path_points_stuffer_node" pkg="agribot_commander" type="path_points_stuffer_node.py"/>
+    </group>
+    
 </launch>
