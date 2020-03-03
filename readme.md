@@ -4,13 +4,11 @@ Used to launch Agribot in various configurations
 ---
 
 ## Available launches
-### Robot:
-`bringup_robot_navigation.launch` \
-`bringup_robot_teleop.launch`
+### Navigation
+`bringup_navigation.launch`
 
 ### Simulation:
-`bringup_simulation_navigation.launch` \
-`bringup_simulation_teleop.launch`
+`bringup_teleop.launch`
 
 ### Standalone visualization:
 `bringup_visualization.launch`
@@ -18,6 +16,9 @@ Used to launch Agribot in various configurations
 ---
 
 ## Available launch arguments
+* `sim`
+    - true - launches simulation
+    - false - launches HAL
 * `vis`
     - true - launches rviz
     - false - turns off visuzalization
@@ -32,6 +33,9 @@ By default (if nothing is added in launch command) parameters are set to false.
 
 ---
 
-## Launch example
+## Launch examples
 Launching navigation in simulation, with rviz + OSM visualization and path_points_stuffer_node: \
-`roslaunch agribot_bringup bringup_simulation_navigation.launch vis:=true osm:=true smach:=false`
+`roslaunch agribot_bringup bringup_simulation_navigation.launch sim:=true vis:=true osm:=true`
+
+Launching navigation on robot, with rviz visualization ON, OSM visualization off and commander in use: \
+`roslaunch agribot_bringup bringup_simulation_navigation.launch vis:=true smach:=true`

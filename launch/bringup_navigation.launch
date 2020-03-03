@@ -1,4 +1,5 @@
 <launch>
+    <arg name="sim" default="false" />
     <arg name="vis" default="false" />
     <arg name="osm" default="false" />
     <arg name="smach" default="false" />
@@ -6,10 +7,12 @@
     <!-- Robot description -->
     <include file="$(find agribot_description)/launch/robot_model.launch" />
 
+
     <!-- Map server -->
     <include file="$(find agribot_map)/launch/map_server.launch">
       <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
     </include>
+
 
     <!-- Navigation -->
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
@@ -17,18 +20,20 @@
       <arg name="odom_topic" value="/agribot/odom/estimated" />
     </include>
 
+
     <!-- Localization -->
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
 
-    <!-- HAL -->
-    <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
 
-    <!-- Visualization -->
-    <group if="$(arg vis)">
-        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
-            <arg name="osm" value="$(arg osm)" />
-        </include>
+    <!-- Simulation -->
+    <group if="$(arg sim)">
+        <include file="$(find agribot_simulation)/launch/gazebo.launch" />
     </group>
+    <!-- or HAL -->
+    <group unless="$(arg sim)">
+        <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
+    </group>
+
 
     <!-- State machine -->
     <group if="$(arg smach)">
@@ -37,6 +42,14 @@
     <!-- or path_points_stuffer -->
     <group unless="$(arg smach)">
         <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
+    </group>
+
+
+    <!-- Visualization -->
+    <group if="$(arg vis)">
+        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
+            <arg name="osm" value="$(arg osm)" />
+        </include>
     </group>
 
 </launch>
