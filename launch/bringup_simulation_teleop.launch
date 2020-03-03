@@ -31,7 +31,7 @@
     </group>
     <!-- or path_points_stuffer -->
     <group unless="$(arg smach)">
-        <node name="path_points_stuffer_node" pkg="agribot_commander" type="path_points_stuffer_node.py"/>
+        <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
     </group>
 
 </launch>
