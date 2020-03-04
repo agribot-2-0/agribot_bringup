@@ -12,6 +12,19 @@
     <include file="$(find agribot_navigation)/launch/kinematics_control.launch" />
 
 
+    <!-- Dummy navigation -->
+    <include file="$(find agribot_navigation)/launch/move_base.launch">
+      <arg name="odom_topic" value="/agribot/odom/estimated" />
+      <arg name="cmd_vel_topic" value="/dummy_cmd_vel" />
+    </include>
+
+
+    <!-- Map server -->
+    <include file="$(find agribot_map)/launch/map_server.launch">
+      <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
+    </include>
+
+
     <!-- Localization -->
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
 
@@ -39,12 +52,6 @@
         <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
     </group>
 
-
-    <!-- Dummy navigation -->
-    <include file="$(find agribot_navigation)/launch/move_base.launch">
-      <arg name="odom_topic" value="/agribot/odom/estimated" />
-      <arg name="cmd_vel_topic" value="/dummy_cmd_vel" />
-    </include>
 
     <!-- Visualization -->
     <group if="$(arg vis)">
