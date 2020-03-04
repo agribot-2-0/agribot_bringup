@@ -40,6 +40,12 @@
     </group>
 
 
+    <!-- Dummy navigation -->
+    <include file="$(find agribot_navigation)/launch/move_base.launch">
+      <arg name="odom_topic" value="/agribot/odom/estimated" />
+      <remap from="cmd_vel" to="dummy_cmd_vel" />
+    </include>
+
     <!-- Visualization -->
     <group if="$(arg vis)">
         <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
