@@ -16,13 +16,17 @@
     <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
 
 
-    <!-- Simulation -->
+    <!-- Simulation + keyboard teleop -->
     <group if="$(arg sim)">
         <include file="$(find agribot_simulation)/launch/gazebo.launch" />
+        <include file="$(find agribot_teleop)/launch/teleop_keyboard.launch" />
     </group>
-    <!-- or HAL -->
+    <!-- or HAL + joystick teleop -->
     <group unless="$(arg sim)">
-        <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
+        <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" >
+            <arg name="manual" value="true" />
+        </include>
+        <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
     </group>
 
 
