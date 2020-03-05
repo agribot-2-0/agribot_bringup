@@ -45,13 +45,8 @@
 
     <!-- State machine -->
     <group if="$(arg smach)">
-        <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch"> 
-            <group if="$(arg sim)" >
-                <arg name="in_simulation" value="true" />
-            </group>
-            <group unless="$(arg sim)" >
-                <arg name="in_simulation" value="false" />
-            </group>
+        <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch">
+            <arg name="sim" value="$(arg sim)" />
         </include>
     </group>
     <!-- or path_points_stuffer -->
