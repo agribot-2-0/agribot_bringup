@@ -7,7 +7,7 @@ Used to launch Agribot in various configurations
 ### Navigation
 `bringup_navigation.launch`
 
-### Simulation:
+### Teleoperation:
 `bringup_teleop.launch`
 
 ### Standalone visualization:
@@ -35,7 +35,7 @@ By default (if nothing is added in launch command) parameters are set to false.
 
 ## Launch examples
 Launching navigation in simulation, with rviz + OSM visualization and path_points_stuffer_node: \
-`roslaunch agribot_bringup bringup_simulation_navigation.launch sim:=true vis:=true osm:=true`
+`roslaunch agribot_bringup bringup_navigation.launch sim:=true vis:=true osm:=true`
 
 Launching navigation on robot, with rviz visualization ON, OSM visualization off and commander in use: \
-`roslaunch agribot_bringup bringup_simulation_navigation.launch vis:=true smach:=true`
+`roslaunch agribot_bringup bringup_navigation.launch vis:=true smach:=true`
