@@ -1,0 +1,67 @@
+<launch>
+    <arg name="sim" default="false" />
+    <arg name="vis" default="false" />
+    <arg name="osm" default="false" />
+    <arg name="smach" default="false" />
+
+    <!-- Robot description -->
+    <include file="$(find agribot_description)/launch/robot_model.launch" />
+
+
+    <!-- Navigation -->
+    <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
+        <arg name="starting_state" value="teleop"/>
+    </include>
+
+
+    <!-- Dummy navigation -->
+    <include file="$(find agribot_navigation)/launch/move_base.launch">
+      <arg name="odom_topic" value="/agribot/odom/estimated" />
+      <arg name="cmd_vel_topic" value="/dummy_cmd_vel" />
+    </include>
+
+
+    <!-- Map server -->
+    <include file="$(find agribot_map)/launch/map_server.launch">
+      <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
+    </include>
+
+
+    <!-- Localization -->
+    <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
+
+
+    <!-- Simulation + keyboard teleop -->
+    <group if="$(arg sim)">
+        <include file="$(find agribot_simulation)/launch/gazebo.launch" />
+        <include file="$(find agribot_teleop)/launch/teleop_keyboard.launch" />
+    </group>
+    <!-- or HAL + joystick teleop -->
+    <group unless="$(arg sim)">
+        <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" >
+            <arg name="manual" value="true" />
+        </include>
+        <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
+    </group>
+
+
+    <!-- State machine -->
+    <group if="$(arg smach)">
+        <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch">
+            <arg name="sim" value="$(arg sim)" />
+        </include>
+    </group>
+    <!-- or path_points_stuffer -->
+    <group unless="$(arg smach)">
+        <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
+    </group>
+
+
+    <!-- Visualization -->
+    <group if="$(arg vis)">
+        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
+            <arg name="osm" value="$(arg osm)" />
+        </include>
+    </group>
+
+</launch>
