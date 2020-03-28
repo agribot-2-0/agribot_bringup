@@ -3,6 +3,7 @@
     <arg name="vis" default="false" />
     <arg name="osm" default="false" />
     <arg name="smach" default="false" />
+    <arg name="world" default="empty" />
 
     <!-- Robot description -->
     <include file="$(find agribot_description)/launch/robot_model.launch" />
@@ -30,7 +31,9 @@
 
     <!-- Simulation -->
     <group if="$(arg sim)">
-        <include file="$(find agribot_simulation)/launch/gazebo.launch" />
+        <include file="$(find agribot_simulation)/launch/gazebo.launch" >
+           <arg name="world" value="$(arg world)" />
+        </include>
     </group>
     <!-- or HAL -->
     <group unless="$(arg sim)">
