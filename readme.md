@@ -28,8 +28,11 @@ Used to launch Agribot in various configurations
 * `smach`
     - true - launches commander (state machine)
     - false - launches path_points_stuffer_node
+* `world`
+    - empty - empty world without any obstacles
+    - orchard - a world with trees in rows
 
-By default (if nothing is added in launch command) parameters are set to false.
+By default (if nothing is added in launch command) parameters are set to false and world is set to empty.
 
 ---
 

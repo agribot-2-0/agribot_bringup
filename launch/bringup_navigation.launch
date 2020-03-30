@@ -1,64 +1,77 @@
 <launch>
-    <arg name="sim" default="false" />
-    <arg name="vis" default="false" />
-    <arg name="osm" default="false" />
-    <arg name="smach" default="false" />
-    <arg name="world" default="empty" />
+  <!-- Simulation arguments -->
+  <arg name="sim" default="false"/>
+  <arg name="world" default="empty"/>
 
-    <!-- Robot description -->
-    <include file="$(find agribot_description)/launch/robot_model.launch" />
+  <!-- Visualization arguments -->
+  <arg name="vis" default="false"/>
+  <arg name="osm" default="false"/>
 
+  <!-- State Machine argument -->
+  <arg name="smach" default="false"/>
 
-    <!-- Map server -->
-    <include file="$(find agribot_map)/launch/map_server.launch">
-      <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
+  <!-- Firebase user id argument -->
+  <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1"/>
+
+  <!-- Robot description -->
+  <include file="$(find agribot_description)/launch/robot_model.launch"/>
+
+  <!-- Map server -->
+  <include file="$(find agribot_map)/launch/map_server.launch">
+    <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
+  </include>
+
+  <!-- Path synchronization (get paths from Cloud Storage) -->
+  <include file="$(find agribot_map)/launch/path_synchronization_node.launch">
+    <arg name="uid" value="$(arg uid)"/>
+  </include>
+
+  <!-- Monitoring (send data to Cloud Firestore) -->
+  <include file="$(find agribot_monitoring)/launch/monitoring_node.launch">
+    <arg name="uid" value="$(arg uid)"/>
+  </include>
+
+  <!-- Navigation -->
+  <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
+    <arg name="starting_state" value="navigation"/>
+  </include>
+  <include file="$(find agribot_navigation)/launch/move_base.launch">
+    <arg name="odom_topic" value="/agribot/odom/estimated"/>
+    <arg name="cmd_vel_topic" value="/cmd_vel_navigation"/>
+  </include>
+
+  <!-- Localization -->
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
+
+  <!-- Simulation -->
+  <group if="$(arg sim)">
+    <include file="$(find agribot_simulation)/launch/gazebo.launch">
+      <arg name="world" value="$(arg world)"/>
     </include>
-
-
-    <!-- Navigation -->
-    <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
-        <arg name="starting_state" value="navigation"/>
+  </group>
+  <!-- or HAL -->
+  <group unless="$(arg sim)">
+    <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
+      <arg name="manual" value="false"/>
     </include>
-    <include file="$(find agribot_navigation)/launch/move_base.launch">
-      <arg name="odom_topic" value="/agribot/odom/estimated" />
-      <arg name="cmd_vel_topic" value="/cmd_vel_navigation" />
+  </group>
+
+  <!-- State machine -->
+  <group if="$(arg smach)">
+    <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch">
+      <arg name="sim" value="$(arg sim)"/>
     </include>
+  </group>
+  <!-- or path_points_stuffer -->
+  <group unless="$(arg smach)">
+    <include file="$(find agribot_commander)/launch/path_points_stuffer.launch"/>
+  </group>
 
-
-    <!-- Localization -->
-    <include file="$(find agribot_localization)/launch/agribot_localization.launch" />
-
-
-    <!-- Simulation -->
-    <group if="$(arg sim)">
-        <include file="$(find agribot_simulation)/launch/gazebo.launch" >
-           <arg name="world" value="$(arg world)" />
-        </include>
-    </group>
-    <!-- or HAL -->
-    <group unless="$(arg sim)">
-        <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" >
-            <arg name="manual" value="false" />
-        </include>
-    </group>
-
-    <!-- State machine -->
-    <group if="$(arg smach)">
-        <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch">
-            <arg name="sim" value="$(arg sim)" />
-        </include>
-    </group>
-    <!-- or path_points_stuffer -->
-    <group unless="$(arg smach)">
-        <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
-    </group>
-
-
-    <!-- Visualization -->
-    <group if="$(arg vis)">
-        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
-            <arg name="osm" value="$(arg osm)" />
-        </include>
-    </group>
+  <!-- Visualization -->
+  <group if="$(arg vis)">
+    <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
+      <arg name="osm" value="$(arg osm)"/>
+    </include>
+  </group>
 
 </launch>
