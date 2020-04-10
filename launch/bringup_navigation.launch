@@ -18,7 +18,7 @@
 
   <!-- Map server -->
   <include file="$(find agribot_map)/launch/map_server.launch">
-    <arg name="map_file" value="$(find agribot_map)/maps/map.yaml"/>
+    <arg name="map_file" value="$(find agribot_map)/maps/moderna.yaml"/>
   </include>
 
   <!-- Path synchronization (get paths from Cloud Storage) -->
