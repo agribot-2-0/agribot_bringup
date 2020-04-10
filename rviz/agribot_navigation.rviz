@@ -140,37 +140,36 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/Marker
+    - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /move_base/SimplePlannerROS/next_goal
-      Name: Simple Planer Next goal
+      Marker Topic: /agribot/move_base_monitor/waypoints
+      Name: KML Waypoints
       Namespaces:
-        next_goal: true
+        /move_base_monitor/waypoints: true
       Queue Size: 100
       Value: true
-    - Class: rviz/Marker
-      Enabled: false
-      Marker Topic: /move_base/SimplePlannerROS/predicted_path
-      Name: Simple Planer Predicted path
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
-    - Class: rviz/Marker
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 0; 0; 255
       Enabled: true
-      Marker Topic: /move_base/SimplePlannerROS/goal_range
-      Name: Simple Planer Goal Range
-      Namespaces:
-        goal_range: true
-      Queue Size: 100
-      Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /move_base/SimplePlannerROS/travelled_path
-      Name: Simple Planer Travelled Path
-      Namespaces:
-        {}
-      Queue Size: 100
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: KML Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic: /agribot/move_base_monitor/path
+      Unreliable: false
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
@@ -203,22 +202,48 @@ Visualization Manager:
       Topic: /move_base/WaypointGlobalPlanner/global_plan
       Unreliable: false
       Value: true
-    - Class: rviz/MarkerArray
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
       Enabled: true
-      Marker Topic: /agribot/move_base_monitor/waypoints
-      Name: Waypoints from KML
+      Name: Global Planner Costmap
+      Topic: /move_base/global_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /move_base/SimplePlannerROS/next_goal
+      Name: Simple Planner Next goal
       Namespaces:
-        /move_base_monitor/waypoints: true
+        next_goal: true
       Queue Size: 100
       Value: true
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /visualization_marker_array
-      Name: OSM Markers
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /move_base/SimplePlannerROS/predicted_path
+      Name: Simple Planner Predicted path
       Namespaces:
         {}
-      Queue Size: 1
+      Queue Size: 100
+      Value: false
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /move_base/SimplePlannerROS/goal_range
+      Name: Simple Planner Goal Range
+      Namespaces:
+        goal_range: true
+      Queue Size: 100
       Value: true
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /move_base/SimplePlannerROS/travelled_path
+      Name: Simple Planner Travelled Path
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
       Covariance:
@@ -257,7 +282,7 @@ Visualization Manager:
       Axes Length: 1
       Axes Radius: 0.10000000149011612
       Class: rviz/Pose
-      Color: 138; 226; 52
+      Color: 0; 255; 0
       Enabled: true
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
@@ -266,62 +291,6 @@ Visualization Manager:
       Shaft Radius: 0.05000000074505806
       Shape: Arrow
       Topic: /move_base_simple/goal
-      Unreliable: false
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Head Diameter: 0.30000001192092896
-      Head Length: 0.20000000298023224
-      Length: 0.30000001192092896
-      Line Style: Lines
-      Line Width: 0.029999999329447746
-      Name: Global Planner Path
-      Offset:
-        X: 0
-        Y: 0
-        Z: 0
-      Pose Color: 255; 85; 255
-      Pose Style: None
-      Radius: 0.029999999329447746
-      Shaft Diameter: 0.10000000149011612
-      Shaft Length: 0.10000000149011612
-      Topic: /move_base/NavfnROS/plan
-      Unreliable: false
-      Value: true
-    - Alpha: 0.699999988079071
-      Class: rviz/Map
-      Color Scheme: map
-      Draw Behind: false
-      Enabled: true
-      Name: Global Costmap
-      Topic: /move_base/global_costmap/costmap
-      Unreliable: false
-      Use Timestamp: false
-      Value: true
-    - Alpha: 1
-      Buffer Length: 1
-      Class: rviz/Path
-      Color: 25; 255; 0
-      Enabled: true
-      Head Diameter: 0.30000001192092896
-      Head Length: 0.20000000298023224
-      Length: 0.30000001192092896
-      Line Style: Lines
-      Line Width: 0.029999999329447746
-      Name: TrajectoryPlannerROS local_path
-      Offset:
-        X: 0
-        Y: 0
-        Z: 0
-      Pose Color: 255; 85; 255
-      Pose Style: None
-      Radius: 0.029999999329447746
-      Shaft Diameter: 0.10000000149011612
-      Shaft Length: 0.10000000149011612
-      Topic: /move_base/TrajectoryPlannerROS/local_plan
       Unreliable: false
       Value: true
   Enabled: true
@@ -352,16 +321,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 78.29115295410156
+      Distance: 126.47565460205078
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 16.293195724487305
-        Y: 10.348971366882324
-        Z: -12.41382884979248
+        X: 38.941097259521484
+        Y: -25.47913360595703
+        Z: -8.898303985595703
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -388,5 +357,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1920
-  X: 1920
+  X: 0
   Y: 0
