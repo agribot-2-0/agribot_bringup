@@ -33,7 +33,7 @@
 
   <!-- Navigation -->
   <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
-    <arg name="starting_state" value="navigation"/>
+    <arg name="starting_state" value="teleop"/>
   </include>
   <include file="$(find agribot_navigation)/launch/move_base.launch">
     <arg name="odom_topic" value="/agribot/odom/estimated"/>
@@ -66,6 +66,9 @@
   <group unless="$(arg smach)">
     <include file="$(find agribot_commander)/launch/path_points_stuffer.launch"/>
   </group>
+
+  <!-- Teleop -->
+  <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
 
   <!-- Visualization -->
   <group if="$(arg vis)">
