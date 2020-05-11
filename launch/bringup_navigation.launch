@@ -12,6 +12,7 @@
 
   <!-- Firebase user id argument -->
   <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1"/>
+  <arg name="rsn" value="ADI75R1" />
 
   <!-- Robot description -->
   <include file="$(find agribot_description)/launch/robot_model.launch"/>
@@ -28,7 +29,7 @@
 
   <!-- Monitoring (send data to Cloud Firestore) -->
   <include file="$(find agribot_monitoring)/launch/monitoring_node.launch">
-    <arg name="uid" value="$(arg uid)"/>
+    <arg name="rsn" value="$(arg rsn)"/>
   </include>
 
   <!-- Navigation -->
