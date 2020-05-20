@@ -1,0 +1,29 @@
+<launch>
+    <arg name="vis" default="false" />
+    <arg name="osm" default="false" />
+    <arg name="bag_path"/>
+    <arg name="loop" default="false" />
+
+    <!-- Robot model -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
+
+    <!-- Sim time -->
+    <param name="use_sim_time" value="true"/>
+    
+    <!-- Bag playback - looping ON -->
+    <group if="$(arg loop)">
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock --loop $(arg bag_path)"/>        
+    </group>
+
+    <!-- Bag playback - looping OFF -->
+    <group unless="$(arg loop)">
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg bag_path)"/>        
+    </group>
+    
+    <!-- Visualization -->
+    <group if="$(arg vis)">
+        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
+            <arg name="osm" value="$(arg osm)" />
+        </include>
+    </group>
+</launch>
