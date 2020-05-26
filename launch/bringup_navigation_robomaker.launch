@@ -1,0 +1,62 @@
+<launch>
+  <!-- Visualization arguments -->
+  <arg name="vis" default="true"/>
+  <arg name="osm" default="false"/>
+
+  <!-- State Machine argument -->
+  <arg name="smach" default="true"/>
+
+  <!-- Firebase user id argument -->
+  <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1"/>
+  <arg name="rsn" value="ADI75R1" />
+
+  <!-- Robot description -->
+  <include file="$(find agribot_description)/launch/robot_model.launch"/>
+
+  <!-- Map server -->
+  <include file="$(find agribot_map)/launch/map_server.launch">
+    <arg name="map_file" value="$(find agribot_map)/maps/moderna.yaml"/>
+  </include>
+
+  <!-- Path synchronization (get paths from Cloud Storage) -->
+  <!-- <include file="$(find agribot_map)/launch/path_synchronization_node.launch">
+    <arg name="uid" value="$(arg uid)"/>
+  </include> -->
+
+  <!-- Monitoring (send data to Cloud Firestore) -->
+  <!-- <include file="$(find agribot_monitoring)/launch/monitoring_node.launch">
+    <arg name="rsn" value="$(arg rsn)"/>
+  </include> -->
+
+  <!-- Navigation -->
+  <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
+    <arg name="starting_state" value="teleop"/>
+  </include>
+  <include file="$(find agribot_navigation)/launch/move_base.launch">
+    <arg name="odom_topic" value="/agribot/odom/estimated"/>
+    <arg name="cmd_vel_topic" value="/cmd_vel_navigation"/>
+  </include>
+
+  <!-- Localization -->
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
+
+  <!-- State machine -->
+  <group if="$(arg smach)">
+    <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch"/>
+  </group>
+  <!-- or path_points_stuffer -->
+  <group unless="$(arg smach)">
+    <include file="$(find agribot_commander)/launch/path_points_stuffer.launch"/>
+  </group>
+
+  <!-- Teleop -->
+  <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
+
+  <!-- Visualization -->
+  <group if="$(arg vis)">
+    <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
+      <arg name="osm" value="$(arg osm)"/>
+    </include>
+  </group>
+
+</launch>
