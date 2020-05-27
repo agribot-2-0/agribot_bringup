@@ -1,4 +1,4 @@
-image: docker:git
+image: docker:18-git
 
 pipelines:
   default:
@@ -14,7 +14,7 @@ pipelines:
            - git clone https://github.com/panpawelchmiel/agribot_navigation.git
            - git clone https://github.com/panpawelchmiel/agribot_teleop.git
            - git clone https://github.com/panpawelchmiel/agribot_simulation.git
-           - .industrial_ci/bitbucket.sh ROS_DISTRO=melodic UPSTREAM_WORKSPACE="agribot_description agribot_map agribot_msgs agribot_teleop"
+           - .industrial_ci/bitbucket.sh BUILDER="colcon" ROS_DISTRO=melodic UPSTREAM_WORKSPACE="agribot_description agribot_map agribot_msgs agribot_teleop"
 
 definitions:
   services:
