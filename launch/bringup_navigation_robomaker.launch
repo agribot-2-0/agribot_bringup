@@ -11,7 +11,7 @@
   <arg name="rsn" value="ADI75R1" />
 
   <!-- Robot description -->
-  <include file="$(find agribot_description)/launch/robot_model.launch"/>
+  <include file="$(find agribot_description)/launch/robot_model_robomaker.launch"/>
 
   <!-- Map server -->
   <include file="$(find agribot_map)/launch/map_server.launch">
