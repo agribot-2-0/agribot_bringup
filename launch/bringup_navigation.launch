@@ -42,7 +42,9 @@
   </include>
 
   <!-- Localization -->
-  <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch">
+    <arg name="sim" value="$(arg sim)"/>
+  </include>
 
   <!-- Simulation -->
   <group if="$(arg sim)">
