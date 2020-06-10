@@ -44,12 +44,12 @@ displays:
   - type: mapviz_plugins/navsat
     name: GNSS
     config:
-      visible: false
+      visible: true
       collapsed: true
       topic: /agribot/gnss
       color: "#cc0000"
       draw_style: lines
-      position_tolerance: 1
+      position_tolerance: 0
       buffer_size: 0
   - type: mapviz_plugins/navsat
     name: Odom base
