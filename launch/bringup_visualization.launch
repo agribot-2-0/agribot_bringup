@@ -12,4 +12,7 @@
         </include>
     </group>
 
+    <!-- Mapviz -->
+    <include file="$(find agribot_bringup)/launch/bringup_mapviz.launch"/>
+
 </launch>

@@ -35,6 +35,14 @@ Used to launch Agribot in various configurations
 By default (if nothing is added in launch command) parameters are set to false and world is set to empty.
 
 ---
+## Mapviz
+
+In order to use mapviz satellite maps you need to run docker container
+```
+docker run -p 8082:8080 -d -t -v ~/mapproxy:/mapproxy danielsnider/mapproxy
+```
+
+---
 
 ## Launch examples
 Launching navigation in simulation, with rviz + OSM visualization and path_points_stuffer_node: \

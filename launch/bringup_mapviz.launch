@@ -1,0 +1,19 @@
+<launch>
+
+   <node pkg="mapviz" type="mapviz" name="$(anon mapviz)">
+     <param name="config" value="/home/lukasz/catkin_ws/src/agribot_base/agribot_bringup/mapviz/agribot_navigation.mvc"/>
+   </node>
+
+   <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
+     <param name="local_xy_frame" value="map"/>
+     <param name="local_xy_origin" value="moderna"/>
+     <rosparam param="local_xy_origins">
+       [{ name: moderna,
+          latitude: 51.2666238403,
+          longitude: 17.2032781896,
+          altitude: 193.704481437,
+          heading: 0}]
+     </rosparam>
+   </node>
+
+</launch>
