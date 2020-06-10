@@ -1,7 +1,7 @@
 <launch>
 
    <node pkg="mapviz" type="mapviz" name="$(anon mapviz)">
-     <param name="config" value="/home/lukasz/catkin_ws/src/agribot_base/agribot_bringup/mapviz/agribot_navigation.mvc"/>
+     <param name="config" value="$(find agribot_bringup)/mapviz/agribot_navigation.mvc"/>
    </node>
 
    <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">

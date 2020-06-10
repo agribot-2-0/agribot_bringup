@@ -192,6 +192,11 @@ install(DIRECTORY rviz
   PATTERN ".svn" EXCLUDE
 )
 
+install(DIRECTORY mapviz
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  PATTERN ".svn" EXCLUDE
+)
+
 #############
 ## Testing ##
 #############
