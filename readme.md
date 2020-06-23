@@ -38,8 +38,10 @@ By default (if nothing is added in launch command) parameters are set to false a
 ## Mapviz
 
 In order to use mapviz satellite maps you need to run docker container
+1) Go to agribot_common/docker folder
+2) Run docker compose
 ```
-docker run -p 8082:8080 -d -t -v ~/mapproxy:/mapproxy danielsnider/mapproxy
+docker-compose up
 ```
 
 ---
