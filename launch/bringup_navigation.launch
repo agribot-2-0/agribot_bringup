@@ -4,8 +4,9 @@
   <arg name="world" default="empty"/>
 
   <!-- Visualization arguments -->
-  <arg name="vis" default="false"/>
-  <arg name="osm" default="false"/>
+  <arg name="vis"     default="false"/>
+  <arg name="osm"     default="false"/>
+  <arg name="mapviz"  default="false"/>
 
   <!-- State Machine argument -->
   <arg name="smach" default="false"/>
@@ -74,7 +75,8 @@
   <!-- Visualization -->
   <group if="$(arg vis)">
     <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
-      <arg name="osm" value="$(arg osm)"/>
+      <arg name="osm"     value="$(arg osm)"/>
+      <arg name="mapviz"  value="$(arg mapviz)"/>
     </include>
   </group>
 

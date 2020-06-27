@@ -1,0 +1,63 @@
+capture_directory: ~
+fixed_frame: map
+target_frame: <none>
+fix_orientation: false
+rotate_90: false
+enable_antialiasing: true
+show_displays: true
+show_status_bar: true
+show_capture_tools: true
+window_width: 1920
+window_height: 1008
+view_scale: 0.1106188
+offset_x: -46.70163
+offset_y: 49.97293
+use_latest_transforms: true
+background: "#555753"
+displays:
+  - type: mapviz_plugins/tile_map
+    name: Map
+    config:
+      visible: true
+      collapsed: true
+      custom_sources:
+        - base_url: http://localhost:8082/wmts/gm_layer/gm_grid/{level}/{x}/{y}.png
+          max_zoom: 20
+          name: test
+          type: wmts
+      bing_api_key: ""
+      source: test
+  - type: mapviz_plugins/path
+    name: KML path
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/move_base_monitor/path
+      color: "#204a87"
+  - type: mapviz_plugins/path
+    name: Global path
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/WaypointGlobalPlanner/global_plan
+      color: "#19ff00"
+  - type: mapviz_plugins/navsat
+    name: GNSS
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gnss
+      color: "#cc0000"
+      draw_style: lines
+      position_tolerance: 0
+      buffer_size: 0
+  - type: mapviz_plugins/navsat
+    name: Odom base
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/odom_base_navsatfix
+      color: "#000000"
+      draw_style: lines
+      position_tolerance: 0
+      buffer_size: 0

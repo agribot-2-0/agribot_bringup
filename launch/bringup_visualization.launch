@@ -1,5 +1,6 @@
 <launch>
-    <arg name="osm" default="false" />
+    <arg name="osm"     default="false" />
+    <arg name="mapviz"  default="false" />
 
     <!-- rviz -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
@@ -10,6 +11,11 @@
             <arg name="url" value="package://agribot_map/osm/drzewna.osm" />
             <arg name="frame_id" value="utm" />
         </include>
+    </group>
+
+    <!-- Mapviz -->
+    <group if="$(arg mapviz)">
+        <include file="$(find agribot_bringup)/launch/bringup_mapviz.launch"/>
     </group>
 
 </launch>
