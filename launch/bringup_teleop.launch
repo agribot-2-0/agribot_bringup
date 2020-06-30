@@ -9,9 +9,7 @@
 
 
     <!-- Navigation -->
-    <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
-        <arg name="starting_state" value="teleop"/>
-    </include>
+    <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
 
 
     <!-- Dummy navigation -->
