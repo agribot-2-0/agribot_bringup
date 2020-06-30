@@ -40,9 +40,8 @@
   </include> -->
 
   <!-- Navigation -->
-  <include file="$(find agribot_navigation)/launch/kinematics_control.launch">
-    <arg name="starting_state" value="teleop"/>
-  </include>
+  <include file="$(find agribot_navigation)/launch/kinematics_control.launch"/>
+  
   <include file="$(find agribot_navigation)/launch/move_base.launch">
     <arg name="odom_topic" value="/agribot/odom/estimated"/>
     <arg name="cmd_vel_topic" value="/cmd_vel_navigation"/>
