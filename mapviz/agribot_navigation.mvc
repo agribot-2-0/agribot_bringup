@@ -22,7 +22,7 @@ displays:
       collapsed: true
       custom_sources:
         - base_url: http://localhost:8082/wmts/gm_layer/gm_grid/{level}/{x}/{y}.png
-          max_zoom: 20
+          max_zoom: 19
           name: test
           type: wmts
       bing_api_key: ""
