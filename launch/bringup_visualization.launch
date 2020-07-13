@@ -1,6 +1,7 @@
 <launch>
     <arg name="osm"     default="false" />
     <arg name="mapviz"  default="false" />
+    <arg name="mapviz_xy_origins"  default="moderna" />
 
     <!-- rviz -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
@@ -15,7 +16,9 @@
 
     <!-- Mapviz -->
     <group if="$(arg mapviz)">
-        <include file="$(find agribot_bringup)/launch/bringup_mapviz.launch"/>
+        <include file="$(find agribot_bringup)/launch/bringup_mapviz.launch">
+            <arg name="xy_origins" value="$(arg mapviz_xy_origins)"/>
+        </include>
     </group>
 
 </launch>
