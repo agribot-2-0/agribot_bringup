@@ -1,6 +1,9 @@
 <launch>
     <arg name="vis" default="false" />
     <arg name="osm" default="false" />
+    <arg name="mapviz"  default="false"/>
+    <arg name="mapviz_xy_origins"  default="moderna" />
+    
     <arg name="bag_path"/>
     <arg name="clock" default="false" />
 
@@ -24,6 +27,8 @@
     <group if="$(arg vis)">
         <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
             <arg name="osm" value="$(arg osm)" />
+            <arg name="mapviz"  value="$(arg mapviz)"/>
+            <arg name="mapviz_xy_origins" value="$(arg mapviz_xy_origins)"/>
         </include>
     </group>
 </launch>

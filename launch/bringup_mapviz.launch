@@ -1,19 +1,36 @@
 <launch>
 
-   <node pkg="mapviz" type="mapviz" name="$(anon mapviz)">
-     <param name="config" value="$(find agribot_bringup)/mapviz/agribot_navigation.mvc"/>
-   </node>
+  <arg name="xy_origins" default="moderna"/>
 
-   <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
-     <param name="local_xy_frame" value="map"/>
-     <param name="local_xy_origin" value="moderna"/>
-     <rosparam param="local_xy_origins">
-       [{ name: moderna,
+  <node pkg="mapviz" type="mapviz" name="$(anon mapviz)">
+    <param name="config" value="$(find agribot_bringup)/mapviz/agribot_navigation.mvc"/>
+  </node>
+
+    <group if="$(eval xy_origins == 'moderna')">
+      <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
+        <param name="local_xy_frame" value="map"/>
+        <param name="local_xy_origin" value="moderna"/>
+        <rosparam param="local_xy_origins">
+          [{ name: moderna,
           latitude: 51.2666238403,
           longitude: 17.2032781896,
           altitude: 193.704481437,
           heading: 0}]
-     </rosparam>
-   </node>
+        </rosparam>
+      </node>
+    </group>
 
+    <group if="$(eval xy_origins == 'drzewna')">
+      <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
+        <param name="local_xy_frame" value="map"/>
+        <param name="local_xy_origin" value="drzewna"/>
+        <rosparam param="local_xy_origins">
+          [{ name: drzewna,
+          latitude: 51.1135406494,
+          longitude: 17.0198917389,
+          altitude: 165.454696655,
+          heading: 0}]
+        </rosparam>
+      </node>
+    </group>
 </launch>
