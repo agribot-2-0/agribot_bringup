@@ -1,0 +1,34 @@
+<launch>
+    <arg name="vis" default="false" />
+    <arg name="osm" default="false" />
+    <arg name="mapviz"  default="false"/>
+    <arg name="mapviz_xy_origins"  default="moderna" />
+    
+    <arg name="bag_path"/>
+    <arg name="clock" default="false" />
+
+    <!-- Robot model -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
+
+    <!-- Sim time -->
+    <param name="use_sim_time" value="true"/>
+    
+    <!-- Bag playback - publish additional clock ON -->
+    <group if="$(arg clock)">
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg bag_path)"/>        
+    </group>
+
+    <!-- Bag playback - publish additional clock OFF -->
+    <group unless="$(arg clock)">
+        <node pkg="rosbag" type="play" name="player" output="screen" args="$(arg bag_path)"/>        
+    </group>
+    
+    <!-- Visualization -->
+    <group if="$(arg vis)">
+        <include file="$(find agribot_bringup)/launch/bringup_visualization.launch" >
+            <arg name="osm" value="$(arg osm)" />
+            <arg name="mapviz"  value="$(arg mapviz)"/>
+            <arg name="mapviz_xy_origins" value="$(arg mapviz_xy_origins)"/>
+        </include>
+    </group>
+</launch>

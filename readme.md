@@ -35,6 +35,16 @@ Used to launch Agribot in various configurations
 By default (if nothing is added in launch command) parameters are set to false and world is set to empty.
 
 ---
+## Mapviz
+
+In order to use mapviz satellite maps you need to run docker container
+1) Go to agribot_common/docker folder
+2) Run docker compose
+```
+docker-compose up
+```
+
+---
 
 ## Launch examples
 Launching navigation in simulation, with rviz + OSM visualization and path_points_stuffer_node: \
