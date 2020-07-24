@@ -7,11 +7,11 @@ enable_antialiasing: true
 show_displays: true
 show_status_bar: true
 show_capture_tools: true
-window_width: 1920
-window_height: 1008
-view_scale: 0.1106188
-offset_x: -46.70163
-offset_y: 49.97293
+window_width: 1853
+window_height: 1025
+view_scale: 0.05360983
+offset_x: -2.625266
+offset_y: -3.994208
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -61,3 +61,79 @@ displays:
       draw_style: lines
       position_tolerance: 0
       buffer_size: 0
+  - type: mapviz_plugins/odometry
+    name: GPS
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/odom/gps
+      color: "#00ff00"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 5
+      show_laps: false
+      show_covariance: true
+      show_all_covariances: true
+      static_arrow_sizes: false
+      arrow_size: 25
+      show_timestamps: 0
+  - type: mapviz_plugins/odometry
+    name: raw
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/odom/raw
+      color: "#000000"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 5
+      show_laps: false
+      show_covariance: true
+      show_all_covariances: false
+      static_arrow_sizes: false
+      arrow_size: 25
+      show_timestamps: 0
+  - type: mapviz_plugins/odometry
+    name: estimated
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/odom/estimated
+      color: "#f57900"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 5
+      show_laps: false
+      show_covariance: true
+      show_all_covariances: false
+      static_arrow_sizes: false
+      arrow_size: 1
+      show_timestamps: 0
+  - type: mapviz_plugins/odometry
+    name: prefiltered
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/odom/prefiltered
+      color: "#fc39ee"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 5
+      show_laps: false
+      show_covariance: true
+      show_all_covariances: false
+      static_arrow_sizes: false
+      arrow_size: 25
+      show_timestamps: 0
+  - type: mapviz_plugins/marker
+    name: Predicted path
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/SimplePlannerROS/predicted_path
+  - type: mapviz_plugins/marker
+    name: Waypoints
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/WaypointGlobalPlanner/waypoints
