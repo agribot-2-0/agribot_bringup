@@ -93,6 +93,7 @@
     <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
       <arg name="osm" value="$(arg osm)" />
       <arg name="mapviz" value="$(arg mapviz)" />
+      <arg name="smach" value="$(arg smach)" />
     </include>
   </group>
 
