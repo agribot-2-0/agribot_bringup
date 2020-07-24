@@ -9,7 +9,7 @@
   <arg name="mapviz" default="false" />
 
   <!-- State Machine argument -->
-  <arg name="smach" default="false" />
+  <arg name="smach" default="true" />
 
   <!-- Argument for publishing of gazebo2rviz markers -->
   <arg name="rviz_models" default="false" />
