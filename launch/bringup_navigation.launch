@@ -98,6 +98,8 @@
   </group>
 
   <!-- Obstacle detection -->
-  <include file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch" />
+  <group if="$(arg use_perception_sensors)">
+    <include file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch" />
+  </group>
 
 </launch>
