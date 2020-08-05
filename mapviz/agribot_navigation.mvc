@@ -9,9 +9,9 @@ show_status_bar: true
 show_capture_tools: true
 window_width: 1853
 window_height: 1025
-view_scale: 0.05360983
-offset_x: -2.625266
-offset_y: -3.994208
+view_scale: 0.06184912
+offset_x: -11.52414
+offset_y: 16.60408
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -47,7 +47,7 @@ displays:
       visible: true
       collapsed: true
       topic: /agribot/gnss
-      color: "#cc0000"
+      color: "#fce94f"
       draw_style: lines
       position_tolerance: 0
       buffer_size: 0
@@ -70,7 +70,7 @@ displays:
       color: "#00ff00"
       draw_style: arrows
       position_tolerance: 0
-      buffer_size: 5
+      buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: true
@@ -86,7 +86,7 @@ displays:
       color: "#000000"
       draw_style: arrows
       position_tolerance: 0
-      buffer_size: 5
+      buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: false
@@ -99,15 +99,15 @@ displays:
       visible: true
       collapsed: true
       topic: /agribot/odom/estimated
-      color: "#f57900"
+      color: "#ef2929"
       draw_style: arrows
       position_tolerance: 0
-      buffer_size: 5
+      buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: false
       static_arrow_sizes: false
-      arrow_size: 1
+      arrow_size: 29
       show_timestamps: 0
   - type: mapviz_plugins/odometry
     name: prefiltered
@@ -118,22 +118,76 @@ displays:
       color: "#fc39ee"
       draw_style: arrows
       position_tolerance: 0
-      buffer_size: 5
+      buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: false
       static_arrow_sizes: false
-      arrow_size: 25
+      arrow_size: 29
       show_timestamps: 0
-  - type: mapviz_plugins/marker
-    name: Predicted path
+  - type: mapviz_plugins/pointcloud2
+    name: Front bumper pointcloud
     config:
       visible: true
       collapsed: true
-      topic: /move_base/SimplePlannerROS/predicted_path
+      topic: /bumper/front/lidar
+      size: 3
+      buffer_size: 1
+      alpha: 1
+      color_transformer: Flat Color
+      min_color: "#00ff00"
+      max_color: "#000000"
+      value_min: 0
+      value_max: 100
+      use_rainbow: false
+      use_automaxmin: false
+      unpack_rgb: false
   - type: mapviz_plugins/marker
-    name: Waypoints
+    name: Vision markers
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/vision_markers
+  - type: mapviz_plugins/marker
+    name: KML Waypoints
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/move_base_monitor/waypoints
+  - type: mapviz_plugins/marker
+    name: Global Planner Waypoints
     config:
       visible: true
       collapsed: true
       topic: /move_base/WaypointGlobalPlanner/waypoints
+  - type: mapviz_plugins/marker
+    name: Goal Range
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/AgribotPlannerROS/goal_range
+  - type: mapviz_plugins/marker
+    name: Next Goal
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/AgribotPlannerROS/next_goal
+  - type: mapviz_plugins/marker
+    name: Travelled Path
+    config:
+      visible: false
+      collapsed: true
+      topic: /move_base/AgribotPlannerROS/travelled_path
+  - type: mapviz_plugins/marker
+    name: Predicted path
+    config:
+      visible: false
+      collapsed: true
+      topic: /move_base/SimplePlannerROS/predicted_path
+  - type: mapviz_plugins/path
+    name: Local Path
+    config:
+      visible: true
+      collapsed: true
+      topic: /move_base/AgribotPlannerROS/local_path
+      color: "#ef2929"
