@@ -9,9 +9,9 @@ show_status_bar: true
 show_capture_tools: true
 window_width: 1853
 window_height: 1025
-view_scale: 0.06184912
-offset_x: -11.52414
-offset_y: 16.60408
+view_scale: 0.1095695
+offset_x: -13.56079
+offset_y: 33.57073
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -73,7 +73,7 @@ displays:
       buffer_size: 1
       show_laps: false
       show_covariance: true
-      show_all_covariances: true
+      show_all_covariances: false
       static_arrow_sizes: false
       arrow_size: 25
       show_timestamps: 0
@@ -88,7 +88,7 @@ displays:
       position_tolerance: 0
       buffer_size: 1
       show_laps: false
-      show_covariance: true
+      show_covariance: false
       show_all_covariances: false
       static_arrow_sizes: false
       arrow_size: 25
