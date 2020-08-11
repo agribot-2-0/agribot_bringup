@@ -22,9 +22,6 @@ Used to launch Agribot in various configurations
 * `vis`
     - true - launches rviz
     - false - turns off visuzalization
-* `osm`
-    - true - launches OpenStreetMap visualization (only if `vis` is also true)
-    - false - turns off OSM visuzalization
 * `smach`
     - true - launches commander (state machine)
     - false - launches path_points_stuffer_node
@@ -47,8 +44,8 @@ docker-compose up
 ---
 
 ## Launch examples
-Launching navigation in simulation, with rviz + OSM visualization and path_points_stuffer_node: \
-`roslaunch agribot_bringup bringup_navigation.launch sim:=true vis:=true osm:=true`
+Launching navigation in simulation, with rviz visualization and path_points_stuffer_node: \
+`roslaunch agribot_bringup bringup_navigation.launch sim:=true vis:=true`
 
-Launching navigation on robot, with rviz visualization ON, OSM visualization off and commander in use: \
+Launching navigation on robot, with rviz visualization ON and commander in use: \
 `roslaunch agribot_bringup bringup_navigation.launch vis:=true smach:=true`
