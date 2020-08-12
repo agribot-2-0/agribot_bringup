@@ -32,6 +32,9 @@
   
   <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml"/>
   <arg name="path_synchronization" default="true" />
+  <arg name="monitoring" default="true" />
+
+  <arg name="cmd_vel_arbiter_starting_state" default="stop" />
 
   <!-- Agribot description -->
   <include file="$(find agribot_description)/launch/agribot_description.launch">
@@ -59,18 +62,15 @@
   </include>
 
   <!-- Monitoring (send data to Cloud Firestore) -->
-  <include file="$(find agribot_monitoring)/launch/monitoring_node.launch">
+  <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch">
     <arg name="rsn" value="$(arg rsn)" />
+    <arg name="monitoring" value="$(arg monitoring)" />
   </include>
 
   <!-- Navigation -->
-  <include file="$(find agribot_navigation)/launch/kinematics_control.launch" />
-
-  <include file="$(find agribot_navigation)/launch/move_base.launch">
-    <arg name="odom_topic" value="/agribot/odom/estimated" />
-    <arg name="cmd_vel_topic" value="/cmd_vel_navigation" />
+  <include file="$(find agribot_navigation)/launch/agribot_navigation.launch" >
+    <arg name="cmd_vel_arbiter_starting_state" value="$(arg cmd_vel_arbiter_starting_state)" />
   </include>
-
 
 
   <!-- Simulation -->
