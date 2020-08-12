@@ -7,9 +7,6 @@
   <arg name="vis" default="false" />
   <arg name="mapviz" default="false" />
 
-  <!-- State Machine argument -->
-  <arg name="smach" default="true" />
-
   <!-- Argument for publishing of gazebo2rviz markers -->
   <arg name="rviz_models" default="false" />
 
@@ -20,19 +17,45 @@
   <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1" />
   <arg name="rsn" value="ADI75R1" />
 
-  <!-- Robot description -->
-  <include file="$(find agribot_description)/launch/robot_model.launch">
+  <arg name="use_ukf" default="false" />
+  
+  <arg name="navsat_transform_magnetic_declination_radians" default="0.0" />
+
+  <!-- Wheel odometry parameters -->
+  <arg name="wheel_radius" default="0.16" />
+  <arg name="chassis_length" default="2.1" />
+  <arg name="orientation_covariance" default="0.01" />
+  <arg name="position_covariance" default="0.01" />
+  <arg name="linear_velocity_x_covariance" default="0.0001" />
+  <arg name="linear_velocity_y_covariance" default="0.0001" />
+  <arg name="angular_velocity_z_covariance" default="0.0001" />
+  
+  <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml"/>
+  <arg name="path_synchronization" default="true" />
+
+  <!-- Agribot description -->
+  <include file="$(find agribot_description)/launch/agribot_description.launch">
     <arg name="use_perception_sensors" value="$(arg use_perception_sensors)" />
   </include>
 
-  <!-- Map server -->
-  <include file="$(find agribot_map)/launch/map_server.launch">
-    <arg name="map_file" value="$(find agribot_map)/maps/moderna.yaml" />
+  <!-- Agribot localization -->
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch">
+    <arg name="sim" value="$(arg sim)" />
+    <arg name="use_ukf" value="$(arg use_ukf)" />
+    <arg name="wheel_radius" value="$(arg wheel_radius)" />
+    <arg name="chassis_length" value="$(arg chassis_length)" />
+    <arg name="orientation_covariance" value="$(arg orientation_covariance)" />
+    <arg name="position_covariance" value="$(arg position_covariance)" />
+    <arg name="linear_velocity_x_covariance" value="$(arg linear_velocity_x_covariance)" />
+    <arg name="linear_velocity_y_covariance" value="$(arg linear_velocity_y_covariance)" />
+    <arg name="angular_velocity_z_covariance" value="$(arg angular_velocity_z_covariance)" />
   </include>
 
-  <!-- Path synchronization (get paths from Cloud Storage) -->
-  <include file="$(find agribot_map)/launch/path_synchronization_node.launch">
+  <!-- Agribot map -->
+  <include file="$(find agribot_map)/launch/agribot_map.launch">
+    <arg name="map_file" value="$(arg map_file)" />
     <arg name="uid" value="$(arg uid)" />
+    <arg name="path_synchronization" value="$(arg path_synchronization)" />
   </include>
 
   <!-- Monitoring (send data to Cloud Firestore) -->
@@ -48,10 +71,7 @@
     <arg name="cmd_vel_topic" value="/cmd_vel_navigation" />
   </include>
 
-  <!-- Localization -->
-  <include file="$(find agribot_localization)/launch/agribot_localization.launch">
-    <arg name="sim" value="$(arg sim)" />
-  </include>
+
 
   <!-- Simulation -->
   <group if="$(arg sim)">
@@ -59,14 +79,6 @@
     <include file="$(find agribot_simulation)/launch/gazebo.launch">
       <arg name="world" value="$(arg world)" />
     </include>
-    <!-- gazebo2rviz -->
-    <group if="$(arg rviz_models)">
-      <!-- gazebo2rviz and static tf -->
-      <include file="$(find gazebo2rviz)/launch/gazebo2rviz.launch">
-        <arg name="marker_frequency" value="0.2" />
-      </include>
-      <node pkg="tf" type="static_transform_publisher" name="tf_map_gazebo_world" args="0 0 0 -1.1284369 0 0 /map /gazebo_world 100" />
-    </group>
   </group>
   <!-- or HAL -->
   <group unless="$(arg sim)">
@@ -76,13 +88,7 @@
   </group>
 
   <!-- State machine -->
-  <group if="$(arg smach)">
-    <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch" />
-  </group>
-  <!-- or path_points_stuffer -->
-  <group unless="$(arg smach)">
-    <include file="$(find agribot_commander)/launch/path_points_stuffer.launch" />
-  </group>
+  <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch" />
 
   <!-- Teleop -->
   <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
@@ -91,7 +97,6 @@
   <group if="$(arg vis)">
     <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
       <arg name="mapviz" value="$(arg mapviz)" />
-      <arg name="smach" value="$(arg smach)" />
     </include>
   </group>
 
