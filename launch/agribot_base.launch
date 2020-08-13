@@ -96,7 +96,9 @@
   <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch" />
 
   <!-- Teleop -->
-  <include file="$(find agribot_teleop)/launch/manual_control_commander.launch" />
+  <include file="$(find agribot_teleop)/launch/agribot_teleop.launch" >
+    <arg name="chassis_length" value="$(arg chassis_length)" />
+  </include>
 
   <!-- Visualization -->
   <group if="$(arg vis)">
