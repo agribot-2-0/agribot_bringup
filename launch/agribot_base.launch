@@ -4,12 +4,16 @@
   <!-- ###### Arguments and parameters ###### -->
   <!-- ###################################### -->
 
-  <!-- Simulation arguments -->
-  <arg name="sim" default="false" />
-  <arg name="world" default="empty" />
-  <arg name="use_perception_sensors" default="false" />
+  <!-- Main arguments -->
+  <arg name="launch_type" default="hal" />
   <arg name="path_synchronization" default="true" />
   <arg name="monitoring" default="true" />
+  <arg name="perception_sensors" default="false" />
+
+  <!-- Simulation arguments -->
+  <arg name="world" default="empty" />
+  <arg name="gazebo_gui" default="false" />
+  <arg name="gazebo_debug" default="false" />
 
   <!-- Visualization arguments -->
   <arg name="vis" default="false" />
@@ -49,18 +53,18 @@
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
   <!-- ########################## -->
-  
+
   <!-- Agribot commander -->
   <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
 
   <!-- Agribot description -->
   <include file="$(find agribot_description)/launch/agribot_description.launch">
-    <arg name="use_perception_sensors" value="$(arg use_perception_sensors)" />
+    <arg name="perception_sensors" value="$(arg perception_sensors)" />
   </include>
 
   <!-- Agribot localization -->
   <include file="$(find agribot_localization)/launch/agribot_localization.launch">
-    <arg name="sim" value="$(arg sim)" />
+    <arg name="sim" value="$(eval arg('launch_type') == 'sim')" />
     <arg name="use_ukf" value="$(arg use_ukf)" />
     <arg name="wheel_radius" value="$(arg wheel_radius)" />
     <arg name="chassis_length" value="$(arg chassis_length)" />
@@ -90,7 +94,7 @@
   </include>
 
   <!-- Agribot obstacle detection -->
-  <include if="$(arg use_perception_sensors)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
+  <include if="$(arg perception_sensors)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
     <arg name="robot_length" value="$(arg robot_length)" />
     <arg name="robot_width" value="$(arg robot_width)" />
     <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
@@ -104,14 +108,16 @@
 
 
   <!-- Agribot simulation -->
-  <include if="$(arg sim)" file="$(find agribot_simulation)/launch/gazebo.launch">
+  <include if="$(eval arg('launch_type') == 'sim')" file="$(find agribot_simulation)/launch/agribot_simulation.launch">
     <arg name="world" value="$(arg world)" />
+    <arg name="gazebo_gui" default="false" />
+    <arg name="gazebo_debug" default="false" />
   </include>
   <!-- or Agribot HAL -->
-  <include unless="$(arg sim)" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
+  <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
     <arg name="manual" value="false" />
   </include>
-
+  <!-- if launch_type is set to robomaker (or anything other than sim/hal) neither simulation nor HAL are launched -->
 
   <!-- Visualization -->
   <include if="$(arg vis)" file="$(find agribot_bringup)/launch/bringup_visualization.launch">
