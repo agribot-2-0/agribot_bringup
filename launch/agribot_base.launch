@@ -1,27 +1,32 @@
 <launch>
+
+  <!-- ###################################### -->
+  <!-- ###### Arguments and parameters ###### -->
+  <!-- ###################################### -->
+
   <!-- Simulation arguments -->
   <arg name="sim" default="false" />
   <arg name="world" default="empty" />
+  <arg name="use_perception_sensors" default="false" />
+  <arg name="path_synchronization" default="true" />
+  <arg name="monitoring" default="true" />
 
   <!-- Visualization arguments -->
   <arg name="vis" default="false" />
   <arg name="mapviz" default="false" />
-
-  <!-- Argument for publishing of gazebo2rviz markers -->
   <arg name="rviz_models" default="false" />
 
-  <!-- Pereception sensors -->
-  <arg name="use_perception_sensors" default="false" />
+  <!-- Agribot commander arguments -->
+  <arg name="cmd_vel_arbiter_starting_state" default="stop" />
 
-  <!-- Firebase user id argument -->
-  <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1" />
-  <arg name="rsn" value="ADI75R1" />
+  <!-- Agribot map arguments  -->
+  <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
 
+  <!-- Agribot localization parameters -->
   <arg name="use_ukf" default="false" />
-
   <arg name="navsat_transform_magnetic_declination_radians" default="0.0" />
 
-  <!-- Wheel odometry parameters -->
+  <!-- Agribot localization - wheel odometry parameters -->
   <arg name="wheel_radius" default="0.16" />
   <arg name="chassis_length" default="2.1" />
   <arg name="orientation_covariance" default="0.01" />
@@ -30,16 +35,23 @@
   <arg name="linear_velocity_y_covariance" default="0.0001" />
   <arg name="angular_velocity_z_covariance" default="0.0001" />
 
-  <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
-  <arg name="path_synchronization" default="true" />
-  <arg name="monitoring" default="true" />
-
-  <arg name="cmd_vel_arbiter_starting_state" default="stop" />
-
+  <!-- Agribot obstacle detection parameters -->
   <arg name="robot_length" default="4.3" />
   <arg name="robot_width" default="1.4" />
   <arg name="detection_robot_length_offset" default="0.3" />
   <arg name="detection_robot_width_offset" default="0.3" />
+
+  <!-- Firebase user id argument -->
+  <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1" />
+  <arg name="rsn" value="ADI75R1" />
+
+
+  <!-- ########################## -->
+  <!-- ###### Launch files ###### -->
+  <!-- ########################## -->
+  
+  <!-- Agribot commander -->
+  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
 
   <!-- Agribot description -->
   <include file="$(find agribot_description)/launch/agribot_description.launch">
@@ -66,53 +78,44 @@
     <arg name="path_synchronization" value="$(arg path_synchronization)" />
   </include>
 
-  <!-- Monitoring (send data to Cloud Firestore) -->
+  <!-- Agribot monitoring (send data to Cloud Firestore) -->
   <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch">
     <arg name="rsn" value="$(arg rsn)" />
     <arg name="monitoring" value="$(arg monitoring)" />
   </include>
 
-  <!-- Navigation -->
+  <!-- Agribot navigation -->
   <include file="$(find agribot_navigation)/launch/agribot_navigation.launch">
     <arg name="cmd_vel_arbiter_starting_state" value="$(arg cmd_vel_arbiter_starting_state)" />
   </include>
 
-
-  <!-- Simulation -->
-  <group if="$(arg sim)">
-    <!-- Gazebo -->
-    <include file="$(find agribot_simulation)/launch/gazebo.launch">
-      <arg name="world" value="$(arg world)" />
-    </include>
-  </group>
-  <!-- or HAL -->
-  <group unless="$(arg sim)">
-    <include file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
-      <arg name="manual" value="false" />
-    </include>
-  </group>
-
-  <!-- State machine -->
-  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
-
-  <!-- Teleop -->
-  <include file="$(find agribot_teleop)/launch/agribot_teleop.launch" >
-    <arg name="chassis_length" value="$(arg chassis_length)" />
-  </include>
-
-  <!-- Visualization -->
-  <group if="$(arg vis)">
-    <include file="$(find agribot_bringup)/launch/bringup_visualization.launch">
-      <arg name="mapviz" value="$(arg mapviz)" />
-    </include>
-  </group>
-
-  <!-- Obstacle detection -->
+  <!-- Agribot obstacle detection -->
   <include if="$(arg use_perception_sensors)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
     <arg name="robot_length" value="$(arg robot_length)" />
     <arg name="robot_width" value="$(arg robot_width)" />
     <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
     <arg name="detection_robot_width_offset" value="$(arg detection_robot_width_offset)" />
+  </include>
+
+  <!-- Agribot teleop -->
+  <include file="$(find agribot_teleop)/launch/agribot_teleop.launch">
+    <arg name="chassis_length" value="$(arg chassis_length)" />
+  </include>
+
+
+  <!-- Agribot simulation -->
+  <include if="$(arg sim)" file="$(find agribot_simulation)/launch/gazebo.launch">
+    <arg name="world" value="$(arg world)" />
+  </include>
+  <!-- or Agribot HAL -->
+  <include unless="$(arg sim)" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
+    <arg name="manual" value="false" />
+  </include>
+
+
+  <!-- Visualization -->
+  <include if="$(arg vis)" file="$(find agribot_bringup)/launch/bringup_visualization.launch">
+    <arg name="mapviz" value="$(arg mapviz)" />
   </include>
 
 </launch>
