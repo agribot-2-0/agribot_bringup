@@ -93,7 +93,7 @@
   </group>
 
   <!-- State machine -->
-  <include file="$(find agribot_commander)/launch/agribot_commander_state_machine.launch" />
+  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
 
   <!-- Teleop -->
   <include file="$(find agribot_teleop)/launch/agribot_teleop.launch" >
