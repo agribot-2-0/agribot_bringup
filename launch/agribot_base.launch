@@ -18,7 +18,6 @@
   <!-- Visualization arguments -->
   <arg name="vis" default="false" />
   <arg name="mapviz" default="false" />
-  <arg name="rviz_models" default="false" />
 
   <!-- Agribot commander arguments -->
   <arg name="cmd_vel_arbiter_starting_state" default="stop" />
