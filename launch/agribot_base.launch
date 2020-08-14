@@ -111,6 +111,7 @@
     <arg name="world" value="$(arg world)" />
     <arg name="gazebo_gui" default="$(arg gazebo_gui)" />
     <arg name="gazebo_debug" default="$(arg gazebo_debug)" />
+    <arg name="perception_sensors" value="$(arg perception_sensors)" />
   </include>
   <!-- or Agribot HAL -->
   <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
