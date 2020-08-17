@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- Use simulation time -->
+  <param name="/use_sim_time" value="true" />
+
+  <!-- Robomaker specific setup -->
+  <arg name="launch_type" default="robomaker" />
+  <arg name="vis" default="true" />
+  <arg name="path_synchronization" default="false" />
+  <arg name="monitoring" default="false" />
+  <arg name="perception_sensors" default="true" />
+
+  <!-- Include agribot_base.launch and pass robomaker specific arguments -->
+  <include file="$(find agribot_bringup)/launch/agribot_base.launch">
+    <arg name="launch_type" value="$(arg launch_type)" />
+    <arg name="vis" value="$(arg vis)" />
+    <arg name="path_synchronization" value="$(arg path_synchronization)" />
+    <arg name="monitoring" value="$(arg monitoring)" />
+    <arg name="perception_sensors" value="$(arg perception_sensors)" />
+  </include>
+
+  <!-- TODO - add automatic publication of task (if environmental variable is set) -->
+
+</launch>

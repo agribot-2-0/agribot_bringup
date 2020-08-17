@@ -1,18 +1,8 @@
 <launch>
-  <arg name="osm" default="false" />
   <arg name="mapviz" default="false" />
-  <arg name="smach" default="false" />
 
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
-
-  <!-- OSM cartopgraphy -->
-  <group if="$(arg osm)">
-    <include file="$(find osm_cartography)/launch/viz_osm.launch">
-      <arg name="url" value="package://agribot_map/osm/drzewna.osm" />
-      <arg name="frame_id" value="utm" />
-    </include>
-  </group>
 
   <!-- Mapviz -->
   <group if="$(arg mapviz)">
@@ -20,8 +10,6 @@
   </group>
 
   <!-- smach viewer -->
-  <group if="$(arg smach)">
-    <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
-  </group>
+  <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
 
 </launch>
