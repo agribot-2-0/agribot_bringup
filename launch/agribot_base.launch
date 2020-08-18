@@ -78,6 +78,7 @@
   <include file="$(find agribot_map)/launch/agribot_map.launch">
     <arg name="map_file" value="$(arg map_file)" />
     <arg name="uid" value="$(arg uid)" />
+    <arg name="rsn" value="$(arg rsn)" />
     <arg name="path_synchronization" value="$(arg path_synchronization)" />
   </include>
 
