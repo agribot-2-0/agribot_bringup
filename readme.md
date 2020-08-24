@@ -63,7 +63,9 @@ NOTE: **Bolded** values are default values of arguments
     - **false - EKF used in agribot_localization**
 
 ---
+
 agribot_localization numeric parameters
+
 * `wheel_radius`
     - 0.16
 * `chassis_length`
@@ -81,6 +83,7 @@ agribot_localization numeric parameters
 
 ---
 agribot_obstacle_detection numeric parameters
+
 * `robot_length`
     - 4.3
 * `robot_width`
@@ -93,8 +96,10 @@ agribot_obstacle_detection numeric parameters
 ---
 
 Firebase parameters
+
 * `uid`
 * `rsn`
+
 ---
 
 
