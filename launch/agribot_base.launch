@@ -48,6 +48,8 @@
   <arg name="uid" value="xhMK5aMLSZOo5rsS67xlTw9dg5o1" />
   <arg name="rsn" value="ADI75R1" />
 
+  <!-- HAL parameters-->
+  <arg name="encoder_impulses_per_revolution" value="36" />
 
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
@@ -116,7 +118,7 @@
   </include>
   <!-- or Agribot HAL -->
   <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
-    <arg name="manual" value="false" />
+    <arg name="encoder_impulses_per_revolution" value="$(arg encoder_impulses_per_revolution)"/>
   </include>
   <!-- if launch_type is set to robomaker (or anything other than sim/hal) neither simulation nor HAL are launched -->
 
