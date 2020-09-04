@@ -355,7 +355,7 @@ Visualization Manager:
         Value: false
       Enabled: true
       Keep: 1
-      Name: Odometry Estimated
+      Name: Local Odometry
       Position Tolerance: 0.10000000149011612
       Shape:
         Alpha: 1
@@ -367,7 +367,7 @@ Visualization Manager:
         Shaft Length: 3
         Shaft Radius: 0.20000000298023224
         Value: Arrow
-      Topic: /agribot/odom/estimated
+      Topic: /agribot/odom/local
       Unreliable: false
       Value: true
     - Alpha: 1

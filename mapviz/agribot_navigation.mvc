@@ -52,11 +52,11 @@ displays:
       position_tolerance: 0
       buffer_size: 0
   - type: mapviz_plugins/navsat
-    name: Odom base
+    name: Local
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom_base_navsatfix
+      topic: /agribot/local_odom_navsatfix
       color: "#000000"
       draw_style: lines
       position_tolerance: 0
@@ -94,11 +94,11 @@ displays:
       arrow_size: 25
       show_timestamps: 0
   - type: mapviz_plugins/odometry
-    name: estimated
+    name: Local
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom/estimated
+      topic: /agribot/odom/local
       color: "#ef2929"
       draw_style: arrows
       position_tolerance: 0
@@ -110,11 +110,11 @@ displays:
       arrow_size: 29
       show_timestamps: 0
   - type: mapviz_plugins/odometry
-    name: prefiltered
+    name: Global
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom/prefiltered
+      topic: /agribot/odom/global
       color: "#fc39ee"
       draw_style: arrows
       position_tolerance: 0
