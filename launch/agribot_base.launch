@@ -53,7 +53,9 @@
   <!-- ########################## -->
 
   <!-- Agribot commander -->
-  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
+  <include file="$(find agribot_commander)/launch/agribot_commander.launch" >
+      <arg name="rsn" value="$(arg rsn)" />
+  </include>
 
   <!-- Agribot description -->
   <include file="$(find agribot_description)/launch/agribot_description.launch">
