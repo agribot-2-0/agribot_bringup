@@ -4,6 +4,7 @@
 
   <arg name="bag_path" />
   <arg name="clock" default="false" />
+  <arg name="rate" default="1.0" />
 
   <!-- Robot model -->
   <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
@@ -13,12 +14,12 @@
 
   <!-- Bag playback - publish additional clock ON -->
   <group if="$(arg clock)">
-    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg bag_path)" />
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock -r $(arg rate) $(arg bag_path)" />
   </group>
 
   <!-- Bag playback - publish additional clock OFF -->
   <group unless="$(arg clock)">
-    <node pkg="rosbag" type="play" name="player" output="screen" args="$(arg bag_path)" />
+    <node pkg="rosbag" type="play" name="player" output="screen" args="-r $(arg rate) $(arg bag_path)" />
   </group>
 
   <!-- Visualization -->
