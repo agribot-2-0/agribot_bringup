@@ -10,16 +10,19 @@
   <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
 
   <!-- Sim time -->
-  <param name="use_sim_time" value="true" />
+  <param name="/use_sim_time" value="true" />
+
+  <!-- Accumulated playback arguments (without clock settings)  -->
+  <arg name="playback_args" value="-r $(arg rate) $(arg bag_path)"/>
 
   <!-- Bag playback - publish additional clock ON -->
   <group if="$(arg clock)">
-    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock -r $(arg rate) $(arg bag_path)" />
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg playback_args)" />
   </group>
 
   <!-- Bag playback - publish additional clock OFF -->
   <group unless="$(arg clock)">
-    <node pkg="rosbag" type="play" name="player" output="screen" args="-r $(arg rate) $(arg bag_path)" />
+    <node pkg="rosbag" type="play" name="player" output="screen" args="$(arg playback_args)" />
   </group>
 
   <!-- Visualization -->
