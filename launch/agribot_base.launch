@@ -9,6 +9,7 @@
   <arg name="path_synchronization" default="true" />
   <arg name="monitoring" default="true" />
   <arg name="perception_sensors" default="false" />
+  <arg name="perception_plugins" default="true" />
 
   <!-- Simulation arguments -->
   <arg name="world" default="empty" />
@@ -44,6 +45,8 @@
   <arg name="detection_robot_length_offset" default="0.3" />
   <arg name="detection_robot_width_offset" default="0.3" />
 
+  <arg name="sonar_detection_config_file" default="sonar_detection.yaml" />
+
   <!-- Firebase user id argument -->
   <arg name="rsn" value="ADI75R1" />
 
@@ -55,11 +58,14 @@
   <!-- ########################## -->
 
   <!-- Agribot commander -->
-  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
+  <include file="$(find agribot_commander)/launch/agribot_commander.launch" >
+      <arg name="rsn" value="$(arg rsn)" />
+  </include>
 
   <!-- Agribot description -->
   <include file="$(find agribot_description)/launch/agribot_description.launch">
     <arg name="perception_sensors" value="$(arg perception_sensors)" />
+    <arg name="perception_plugins" value="$(arg perception_plugins)" />
   </include>
 
   <!-- Agribot localization -->
@@ -99,6 +105,7 @@
     <arg name="robot_width" value="$(arg robot_width)" />
     <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
     <arg name="detection_robot_width_offset" value="$(arg detection_robot_width_offset)" />
+    <arg name="sonar_detection_config_file" value="$(arg sonar_detection_config_file)" />
   </include>
 
   <!-- Agribot teleop -->
@@ -113,6 +120,7 @@
     <arg name="gazebo_gui" default="$(arg gazebo_gui)" />
     <arg name="gazebo_debug" default="$(arg gazebo_debug)" />
     <arg name="perception_sensors" value="$(arg perception_sensors)" />
+    <arg name="perception_plugins" value="$(arg perception_plugins)" />
   </include>
   <!-- or Agribot HAL -->
   <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
