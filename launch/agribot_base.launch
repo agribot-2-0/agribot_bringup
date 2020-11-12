@@ -111,6 +111,9 @@
     <arg name="chassis_length" value="$(arg chassis_length)" />
   </include>
 
+  <!-- Agribot tool management -->
+  <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch">
+  </include>
 
   <!-- Agribot simulation -->
   <include if="$(eval arg('launch_type') == 'sim')" file="$(find agribot_simulation)/launch/agribot_simulation.launch">
