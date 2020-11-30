@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- Use simulation time -->
+  <param name="/use_sim_time" value="true" />
+
+  <!-- Local simulation setup -->
+  <arg name="launch_type" default="sim" />
+  <arg name="vis" default="true" />
+  <arg name="path_synchronization" default="false" />
+  <arg name="monitoring" default="false" />
+  <arg name="perception_sensors" default="false" />
+
+  <!-- Include agribot_base.launch and pass simulation specific arguments -->
+  <include file="$(find agribot_bringup)/launch/agribot_base.launch">
+    <arg name="launch_type" value="$(arg launch_type)" />
+    <arg name="vis" value="$(arg vis)" />
+    <arg name="path_synchronization" value="$(arg path_synchronization)" />
+    <arg name="monitoring" value="$(arg monitoring)" />
+    <arg name="perception_sensors" value="$(arg perception_sensors)" />
+  </include>
+
+  <!-- TODO - add automatic publication of task (if environmental variable is set) -->
+
+</launch>
