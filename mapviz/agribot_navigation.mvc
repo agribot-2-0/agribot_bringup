@@ -82,7 +82,7 @@ displays:
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom/raw
+      topic: /agribot/odom/raw/from_carts_velocities
       color: "#000000"
       draw_style: arrows
       position_tolerance: 0
