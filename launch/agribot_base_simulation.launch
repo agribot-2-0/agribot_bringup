@@ -10,6 +10,12 @@
   <arg name="monitoring" default="false" />
   <arg name="perception_sensors" default="false" />
 
+  <param name="task_name" value="$(env AGRIBOT_TASK)"/>
+  <arg name="world" value="$(env AGRIBOT_WORLD)"/>
+
+
+  <node name="functional_test" pkg="agribot_bringup" type="agribot_functional_test.py"/>
+
   <!-- Include agribot_base.launch and pass simulation specific arguments -->
   <include file="$(find agribot_bringup)/launch/agribot_base.launch">
     <arg name="launch_type" value="$(arg launch_type)" />
@@ -17,6 +23,7 @@
     <arg name="path_synchronization" value="$(arg path_synchronization)" />
     <arg name="monitoring" value="$(arg monitoring)" />
     <arg name="perception_sensors" value="$(arg perception_sensors)" />
+    <arg name="world" value="$(arg world)" />
   </include>
 
   <!-- TODO - add automatic publication of task (if environmental variable is set) -->
