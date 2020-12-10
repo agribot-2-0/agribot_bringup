@@ -6,6 +6,7 @@
   <!-- Local simulation setup -->
   <arg name="launch_type" default="sim" />
   <arg name="vis" default="true" />
+  <arg name="mapviz" default="true" />
   <arg name="path_synchronization" default="false" />
   <arg name="monitoring" default="false" />
   <arg name="perception_sensors" default="false" />
@@ -14,6 +15,7 @@
   <include file="$(find agribot_bringup)/launch/agribot_base.launch">
     <arg name="launch_type" value="$(arg launch_type)" />
     <arg name="vis" value="$(arg vis)" />
+    <arg name="mapviz" value="$(arg mapviz)" />
     <arg name="path_synchronization" value="$(arg path_synchronization)" />
     <arg name="monitoring" value="$(arg monitoring)" />
     <arg name="perception_sensors" value="$(arg perception_sensors)" />
