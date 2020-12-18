@@ -10,6 +10,8 @@
   </group>
 
   <!-- smach viewer -->
-  <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
+  <group if="$(env AGRIBOT_SMACH_VIEWER)">
+    <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
+  </group>
 
 </launch>
