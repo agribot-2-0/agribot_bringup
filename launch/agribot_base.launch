@@ -28,7 +28,6 @@
 
   <!-- Agribot localization parameters -->
   <arg name="use_ukf" default="false" />
-  <arg name="navsat_transform_magnetic_declination_radians" default="0.0" />
 
   <!-- Agribot localization - wheel odometry parameters -->
   <arg name="wheel_radius" default="0.16" />
