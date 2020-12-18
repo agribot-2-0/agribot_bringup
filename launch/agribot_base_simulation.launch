@@ -6,6 +6,7 @@
   <!-- Local simulation setup -->
   <arg name="launch_type" default="sim" />
   <arg name="vis" default="true" />
+  <arg name="mapviz" default="true" />
   <arg name="path_synchronization" default="false" />
   <arg name="monitoring" default="false" />
 
