@@ -12,7 +12,7 @@ def node():
                                      queue_size=1)
     rospy.wait_for_message('/agribot/state_machine/state', String)
     if not rospy.has_param('task_name'):
-        ## set tag to "failed"
+        ## TODO: set tag to "failed"
         return
 
     ## wait for system is ready
@@ -21,6 +21,9 @@ def node():
     actual_task_msg = String()
     actual_task_msg.data = rospy.get_param('task_name')
     task_publisher.publish(actual_task_msg)
+
+    ## TODO: monitor task progress and robot movemen, in case of wrong behaviar
+    ## set tag to "failed"
 
 
 if __name__ == '__main__':
