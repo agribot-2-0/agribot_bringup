@@ -106,11 +106,6 @@
     <arg name="sonar_detection_config_file" value="$(arg sonar_detection_config_file)" />
   </include>
 
-  <!-- Agribot teleop -->
-  <include file="$(find agribot_teleop)/launch/agribot_teleop.launch">
-    <arg name="chassis_length" value="$(arg chassis_length)" />
-  </include>
-
   <!-- Agribot tool management -->
   <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch">
   </include>
