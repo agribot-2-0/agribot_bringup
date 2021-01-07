@@ -1,6 +1,4 @@
 <launch>
-  <arg name="mapviz" default="false" />
-
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
 
