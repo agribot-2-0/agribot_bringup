@@ -7,10 +7,6 @@
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
 
-  <!-- Visualization arguments -->
-  <arg name="vis" default="$(env AGRIBOT_VIS)" />
-  <arg name="mapviz" default="$(env AGRIBOT_MAPVIZ)" />
-
   <!-- Agribot commander arguments -->
   <arg name="cmd_vel_arbiter_starting_state" default="stop" />
 
@@ -95,8 +91,6 @@
   <!-- if launch_type is set to robomaker (or anything other than sim/hal) neither simulation nor HAL are launched -->
 
   <!-- Visualization -->
-  <include if="$(arg vis)" file="$(find agribot_bringup)/launch/bringup_visualization.launch">
-    <arg name="mapviz" value="$(arg mapviz)" />
-  </include>
+  <include if="$(env AGRIBOT_VIS)" file="$(find agribot_bringup)/launch/bringup_visualization.launch" />
 
 </launch>

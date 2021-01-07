@@ -8,7 +8,6 @@
   <arg name="vis" default="true" />
   <arg name="path_synchronization" default="false" />
   <arg name="monitoring" default="false" />
-  <arg name="perception_sensors" default="false" />
 
   <!-- Include agribot_base.launch and pass robomaker specific arguments -->
   <include file="$(find agribot_bringup)/launch/agribot_base.launch">
