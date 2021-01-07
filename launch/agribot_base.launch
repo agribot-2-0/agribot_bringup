@@ -7,7 +7,6 @@
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
   <arg name="path_synchronization" default="$(env AGRIBOT_PATH_SYNCHRONIZATION)" />
-  <arg name="monitoring" default="$(env AGRIBOT_MONITORING)" />
 
   <!-- Visualization arguments -->
   <arg name="vis" default="$(env AGRIBOT_VIS)" />
@@ -70,9 +69,7 @@
   </include>
 
   <!-- Agribot monitoring (send data to Cloud Firestore) -->
-  <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch">
-    <arg name="monitoring" value="$(arg monitoring)" />
-  </include>
+  <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch" />
 
   <!-- Agribot navigation -->
   <include file="$(find agribot_navigation)/launch/agribot_navigation.launch">
