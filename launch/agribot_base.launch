@@ -6,7 +6,6 @@
 
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
-  <arg name="path_synchronization" default="$(env AGRIBOT_PATH_SYNCHRONIZATION)" />
 
   <!-- Visualization arguments -->
   <arg name="vis" default="$(env AGRIBOT_VIS)" />
@@ -65,7 +64,6 @@
   <!-- Agribot map -->
   <include file="$(find agribot_map)/launch/agribot_map.launch">
     <arg name="map_file" value="$(arg map_file)" />
-    <arg name="path_synchronization" value="$(arg path_synchronization)" />
   </include>
 
   <!-- Agribot monitoring (send data to Cloud Firestore) -->
