@@ -200,6 +200,12 @@ install(DIRECTORY mapviz
   PATTERN ".svn" EXCLUDE
 )
 
+
+catkin_install_python(PROGRAMS
+  scripts/agribot_functional_test.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/scripts
+)
+
 #############
 ## Testing ##
 #############

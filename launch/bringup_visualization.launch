@@ -1,15 +1,11 @@
 <launch>
-  <arg name="mapviz" default="false" />
-
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
 
   <!-- Mapviz -->
-  <group if="$(arg mapviz)">
-    <include file="$(find agribot_bringup)/launch/bringup_mapviz.launch" />
-  </group>
+  <include if="$(env AGRIBOT_MAPVIZ)" file="$(find agribot_bringup)/launch/bringup_mapviz.launch" />
 
   <!-- smach viewer -->
-  <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
+  <node if="$(env AGRIBOT_SMACH_VIEWER)" name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
 
 </launch>

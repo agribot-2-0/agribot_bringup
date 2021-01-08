@@ -5,20 +5,7 @@
   <!-- ###################################### -->
 
   <!-- Main arguments -->
-  <arg name="launch_type" default="hal" />
-  <arg name="path_synchronization" default="true" />
-  <arg name="monitoring" default="true" />
-  <arg name="perception_sensors" default="false" />
-  <arg name="perception_plugins" default="true" />
-
-  <!-- Simulation arguments -->
-  <arg name="world" default="empty" />
-  <arg name="gazebo_gui" default="false" />
-  <arg name="gazebo_debug" default="false" />
-
-  <!-- Visualization arguments -->
-  <arg name="vis" default="false" />
-  <arg name="mapviz" default="false" />
+  <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
 
   <!-- Agribot commander arguments -->
   <arg name="cmd_vel_arbiter_starting_state" default="stop" />
@@ -47,24 +34,15 @@
 
   <arg name="sonar_detection_config_file" default="sonar_detection.yaml" />
 
-  <!-- Firebase user id argument -->
-  <arg name="rsn" value="ADI75R1" />
-
-  
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
   <!-- ########################## -->
 
   <!-- Agribot commander -->
-  <include file="$(find agribot_commander)/launch/agribot_commander.launch" >
-      <arg name="rsn" value="$(arg rsn)" />
-  </include>
+  <include file="$(find agribot_commander)/launch/agribot_commander.launch" />
 
   <!-- Agribot description -->
-  <include file="$(find agribot_description)/launch/agribot_description.launch">
-    <arg name="perception_sensors" value="$(arg perception_sensors)" />
-    <arg name="perception_plugins" value="$(arg perception_plugins)" />
-  </include>
+  <include file="$(find agribot_description)/launch/agribot_description.launch"/>
 
   <!-- Agribot localization -->
   <include file="$(find agribot_localization)/launch/agribot_localization.launch">
@@ -82,15 +60,10 @@
   <!-- Agribot map -->
   <include file="$(find agribot_map)/launch/agribot_map.launch">
     <arg name="map_file" value="$(arg map_file)" />
-    <arg name="rsn" value="$(arg rsn)" />
-    <arg name="path_synchronization" value="$(arg path_synchronization)" />
   </include>
 
   <!-- Agribot monitoring (send data to Cloud Firestore) -->
-  <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch">
-    <arg name="rsn" value="$(arg rsn)" />
-    <arg name="monitoring" value="$(arg monitoring)" />
-  </include>
+  <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch" />
 
   <!-- Agribot navigation -->
   <include file="$(find agribot_navigation)/launch/agribot_navigation.launch">
@@ -98,7 +71,7 @@
   </include>
 
   <!-- Agribot obstacle detection -->
-  <include if="$(arg perception_sensors)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
+  <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
     <arg name="robot_length" value="$(arg robot_length)" />
     <arg name="robot_width" value="$(arg robot_width)" />
     <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
@@ -107,17 +80,10 @@
   </include>
 
   <!-- Agribot tool management -->
-  <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch">
-  </include>
+  <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch" />
 
   <!-- Agribot simulation -->
-  <include if="$(eval arg('launch_type') == 'sim')" file="$(find agribot_simulation)/launch/agribot_simulation.launch">
-    <arg name="world" value="$(arg world)" />
-    <arg name="gazebo_gui" default="$(arg gazebo_gui)" />
-    <arg name="gazebo_debug" default="$(arg gazebo_debug)" />
-    <arg name="perception_sensors" value="$(arg perception_sensors)" />
-    <arg name="perception_plugins" value="$(arg perception_plugins)" />
-  </include>
+  <include if="$(eval arg('launch_type') == 'sim')" file="$(find agribot_simulation)/launch/agribot_simulation.launch" />
   <!-- or Agribot HAL -->
   <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
     <arg name="manual" value="false" />
@@ -125,8 +91,6 @@
   <!-- if launch_type is set to robomaker (or anything other than sim/hal) neither simulation nor HAL are launched -->
 
   <!-- Visualization -->
-  <include if="$(arg vis)" file="$(find agribot_bringup)/launch/bringup_visualization.launch">
-    <arg name="mapviz" value="$(arg mapviz)" />
-  </include>
+  <include if="$(env AGRIBOT_VIS)" file="$(find agribot_bringup)/launch/bringup_visualization.launch" />
 
 </launch>
