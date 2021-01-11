@@ -16,15 +16,6 @@
   <!-- Agribot localization parameters -->
   <arg name="use_ukf" default="false" />
 
-  <!-- Agribot localization - wheel odometry parameters -->
-  <arg name="wheel_radius" default="0.16" />
-  <arg name="chassis_length" default="2.1" />
-  <arg name="orientation_covariance" default="0.01" />
-  <arg name="position_covariance" default="0.01" />
-  <arg name="linear_velocity_x_covariance" default="0.0001" />
-  <arg name="linear_velocity_y_covariance" default="0.0001" />
-  <arg name="angular_velocity_z_covariance" default="0.0001" />
-
   <!-- Agribot obstacle detection parameters -->
   <arg name="robot_length" default="4.3" />
   <arg name="robot_width" default="1.4" />
@@ -45,13 +36,6 @@
   <include file="$(find agribot_localization)/launch/agribot_localization.launch">
     <arg name="sim" value="$(eval arg('launch_type') == 'sim')" />
     <arg name="use_ukf" value="$(arg use_ukf)" />
-    <arg name="wheel_radius" value="$(arg wheel_radius)" />
-    <arg name="chassis_length" value="$(arg chassis_length)" />
-    <arg name="orientation_covariance" value="$(arg orientation_covariance)" />
-    <arg name="position_covariance" value="$(arg position_covariance)" />
-    <arg name="linear_velocity_x_covariance" value="$(arg linear_velocity_x_covariance)" />
-    <arg name="linear_velocity_y_covariance" value="$(arg linear_velocity_y_covariance)" />
-    <arg name="angular_velocity_z_covariance" value="$(arg angular_velocity_z_covariance)" />
   </include>
 
   <!-- Agribot map -->
