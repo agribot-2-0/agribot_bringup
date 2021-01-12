@@ -34,7 +34,6 @@
 
   <!-- Agribot localization -->
   <include file="$(find agribot_localization)/launch/agribot_localization.launch">
-    <arg name="sim" value="$(eval arg('launch_type') == 'sim')" />
     <arg name="use_ukf" value="$(arg use_ukf)" />
   </include>
 
