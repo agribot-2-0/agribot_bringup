@@ -13,9 +13,6 @@
   <!-- Agribot map arguments  -->
   <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
 
-  <!-- Agribot localization parameters -->
-  <arg name="use_ukf" default="false" />
-
   <!-- Agribot obstacle detection parameters -->
   <arg name="robot_length" default="4.3" />
   <arg name="robot_width" default="1.4" />
@@ -33,9 +30,7 @@
   <include file="$(find agribot_description)/launch/agribot_description.launch"/>
 
   <!-- Agribot localization -->
-  <include file="$(find agribot_localization)/launch/agribot_localization.launch">
-    <arg name="use_ukf" value="$(arg use_ukf)" />
-  </include>
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
 
   <!-- Agribot map -->
   <include file="$(find agribot_map)/launch/agribot_map.launch">
