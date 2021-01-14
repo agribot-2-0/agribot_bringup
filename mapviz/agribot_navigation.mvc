@@ -94,11 +94,11 @@ displays:
       arrow_size: 25
       show_timestamps: 0
   - type: mapviz_plugins/odometry
-    name: estimated
+    name: local
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom/estimated
+      topic: /agribot/odom/local
       color: "#ef2929"
       draw_style: arrows
       position_tolerance: 0
@@ -110,11 +110,11 @@ displays:
       arrow_size: 29
       show_timestamps: 0
   - type: mapviz_plugins/odometry
-    name: prefiltered
+    name: global
     config:
       visible: true
       collapsed: true
-      topic: /agribot/odom/prefiltered
+      topic: /agribot/odom/global
       color: "#fc39ee"
       draw_style: arrows
       position_tolerance: 0
