@@ -10,12 +10,6 @@
   <!-- Agribot map arguments  -->
   <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
 
-  <!-- Agribot obstacle detection parameters -->
-  <arg name="robot_length" default="4.3" />
-  <arg name="robot_width" default="1.4" />
-  <arg name="detection_robot_length_offset" default="0.3" />
-  <arg name="detection_robot_width_offset" default="0.3" />
-
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
   <!-- ########################## -->
@@ -41,12 +35,7 @@
   <include file="$(find agribot_navigation)/launch/agribot_navigation.launch" />
 
   <!-- Agribot obstacle detection -->
-  <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
-    <arg name="robot_length" value="$(arg robot_length)" />
-    <arg name="robot_width" value="$(arg robot_width)" />
-    <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
-    <arg name="detection_robot_width_offset" value="$(arg detection_robot_width_offset)" />
-  </include>
+  <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch" />
 
   <!-- Agribot tool management -->
   <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch" />
