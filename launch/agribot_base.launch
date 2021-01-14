@@ -7,9 +7,6 @@
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
 
-  <!-- Agribot commander arguments -->
-  <arg name="cmd_vel_arbiter_starting_state" default="stop" />
-
   <!-- Agribot map arguments  -->
   <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
 
@@ -41,9 +38,7 @@
   <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch" />
 
   <!-- Agribot navigation -->
-  <include file="$(find agribot_navigation)/launch/agribot_navigation.launch">
-    <arg name="cmd_vel_arbiter_starting_state" value="$(arg cmd_vel_arbiter_starting_state)" />
-  </include>
+  <include file="$(find agribot_navigation)/launch/agribot_navigation.launch" />
 
   <!-- Agribot obstacle detection -->
   <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
