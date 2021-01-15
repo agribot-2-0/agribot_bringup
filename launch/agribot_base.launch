@@ -7,29 +7,8 @@
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
 
-  <!-- Agribot commander arguments -->
-  <arg name="cmd_vel_arbiter_starting_state" default="stop" />
-
   <!-- Agribot map arguments  -->
   <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
-
-  <!-- Agribot localization parameters -->
-  <arg name="use_ukf" default="false" />
-
-  <!-- Agribot localization - wheel odometry parameters -->
-  <arg name="wheel_radius" default="0.16" />
-  <arg name="chassis_length" default="2.1" />
-  <arg name="orientation_covariance" default="0.01" />
-  <arg name="position_covariance" default="0.01" />
-  <arg name="linear_velocity_x_covariance" default="0.0001" />
-  <arg name="linear_velocity_y_covariance" default="0.0001" />
-  <arg name="angular_velocity_z_covariance" default="0.0001" />
-
-  <!-- Agribot obstacle detection parameters -->
-  <arg name="robot_length" default="4.3" />
-  <arg name="robot_width" default="1.4" />
-  <arg name="detection_robot_length_offset" default="0.3" />
-  <arg name="detection_robot_width_offset" default="0.3" />
 
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
@@ -42,17 +21,7 @@
   <include file="$(find agribot_description)/launch/agribot_description.launch"/>
 
   <!-- Agribot localization -->
-  <include file="$(find agribot_localization)/launch/agribot_localization.launch">
-    <arg name="sim" value="$(eval arg('launch_type') == 'sim')" />
-    <arg name="use_ukf" value="$(arg use_ukf)" />
-    <arg name="wheel_radius" value="$(arg wheel_radius)" />
-    <arg name="chassis_length" value="$(arg chassis_length)" />
-    <arg name="orientation_covariance" value="$(arg orientation_covariance)" />
-    <arg name="position_covariance" value="$(arg position_covariance)" />
-    <arg name="linear_velocity_x_covariance" value="$(arg linear_velocity_x_covariance)" />
-    <arg name="linear_velocity_y_covariance" value="$(arg linear_velocity_y_covariance)" />
-    <arg name="angular_velocity_z_covariance" value="$(arg angular_velocity_z_covariance)" />
-  </include>
+  <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
 
   <!-- Agribot map -->
   <include file="$(find agribot_map)/launch/agribot_map.launch">
@@ -63,17 +32,10 @@
   <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch" />
 
   <!-- Agribot navigation -->
-  <include file="$(find agribot_navigation)/launch/agribot_navigation.launch">
-    <arg name="cmd_vel_arbiter_starting_state" value="$(arg cmd_vel_arbiter_starting_state)" />
-  </include>
+  <include file="$(find agribot_navigation)/launch/agribot_navigation.launch" />
 
   <!-- Agribot obstacle detection -->
-  <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch">
-    <arg name="robot_length" value="$(arg robot_length)" />
-    <arg name="robot_width" value="$(arg robot_width)" />
-    <arg name="detection_robot_length_offset" value="$(arg detection_robot_length_offset)" />
-    <arg name="detection_robot_width_offset" value="$(arg detection_robot_width_offset)" />
-  </include>
+  <include if="$(env AGRIBOT_PERCEPTION_SENSORS)" file="$(find agribot_obstacle_detection)/launch/agribot_obstacle_detection.launch" />
 
   <!-- Agribot tool management -->
   <include file="$(find agribot_tools_management)/launch/agribot_tools_management.launch" />

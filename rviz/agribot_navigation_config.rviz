@@ -9,8 +9,8 @@ Panels:
         - /Global Planner Path1
         - /Local Planner Path1
         - /Path Slice1
-        - /Odometry Estimated1
-        - /Odometry Estimated1/Shape1
+        - /Odometry Local1
+        - /Odometry Local1/Shape1
       Splitter Ratio: 0.5610687136650085
     Tree Height: 838
   - Class: rviz/Selection
@@ -224,7 +224,7 @@ Visualization Manager:
         Value: false
       Enabled: true
       Keep: 100
-      Name: Odometry Estimated
+      Name: Odometry local
       Position Tolerance: 0.10000000149011612
       Shape:
         Alpha: 1
@@ -236,7 +236,7 @@ Visualization Manager:
         Shaft Length: 0.10000000149011612
         Shaft Radius: 0.10000000149011612
         Value: Arrow
-      Topic: /agribot/odom/estimated
+      Topic: /agribot/odom/local
       Unreliable: false
       Value: true
     - Alpha: 1
