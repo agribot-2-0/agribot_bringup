@@ -43,9 +43,7 @@
   <!-- Agribot simulation -->
   <include if="$(eval arg('launch_type') == 'sim')" file="$(find agribot_simulation)/launch/agribot_simulation.launch" />
   <!-- or Agribot HAL -->
-  <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch">
-    <arg name="manual" value="false" />
-  </include>
+  <include if="$(eval arg('launch_type') == 'hal')" file="$(find hal_bringup)/launch/bringup_hal_agribot.launch" />
   <!-- if launch_type is set to robomaker (or anything other than sim/hal) neither simulation nor HAL are launched -->
 
   <!-- Visualization -->
