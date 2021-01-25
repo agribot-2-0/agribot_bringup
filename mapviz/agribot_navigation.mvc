@@ -9,9 +9,9 @@ show_status_bar: true
 show_capture_tools: true
 window_width: 1853
 window_height: 1025
-view_scale: 0.1095695
-offset_x: -13.56079
-offset_y: 33.57073
+view_scale: 0.005289349
+offset_x: -0.9495801
+offset_y: 13.61066
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -30,31 +30,21 @@ displays:
   - type: mapviz_plugins/path
     name: KML path
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/move_base_monitor/path
       color: "#204a87"
   - type: mapviz_plugins/path
     name: Global path
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /move_base/WaypointGlobalPlanner/global_plan
       color: "#19ff00"
   - type: mapviz_plugins/navsat
-    name: GNSS
-    config:
-      visible: true
-      collapsed: true
-      topic: /agribot/gnss
-      color: "#fce94f"
-      draw_style: lines
-      position_tolerance: 0
-      buffer_size: 0
-  - type: mapviz_plugins/navsat
     name: Odom base
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/odom_base_navsatfix
       color: "#000000"
@@ -64,7 +54,7 @@ displays:
   - type: mapviz_plugins/odometry
     name: GPS
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/odom/gps
       color: "#00ff00"
@@ -80,7 +70,7 @@ displays:
   - type: mapviz_plugins/odometry
     name: raw
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/odom/raw/from_carts_velocities
       color: "#000000"
@@ -96,7 +86,7 @@ displays:
   - type: mapviz_plugins/odometry
     name: local
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/odom/local
       color: "#ef2929"
@@ -112,23 +102,23 @@ displays:
   - type: mapviz_plugins/odometry
     name: global
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/odom/global
       color: "#fc39ee"
-      draw_style: arrows
+      draw_style: points
       position_tolerance: 0
       buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: false
-      static_arrow_sizes: false
-      arrow_size: 29
+      static_arrow_sizes: true
+      arrow_size: 345
       show_timestamps: 0
   - type: mapviz_plugins/pointcloud2
     name: Front bumper pointcloud
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /bumper/front/lidar
       size: 3
@@ -145,31 +135,31 @@ displays:
   - type: mapviz_plugins/marker
     name: Vision markers
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/vision_markers
   - type: mapviz_plugins/marker
     name: KML Waypoints
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /agribot/move_base_monitor/waypoints
   - type: mapviz_plugins/marker
     name: Global Planner Waypoints
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /move_base/WaypointGlobalPlanner/waypoints
   - type: mapviz_plugins/marker
     name: Goal Range
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /move_base/AgribotPlannerROS/goal_range
   - type: mapviz_plugins/marker
     name: Next Goal
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /move_base/AgribotPlannerROS/next_goal
   - type: mapviz_plugins/marker
@@ -187,7 +177,64 @@ displays:
   - type: mapviz_plugins/path
     name: Local Path
     config:
-      visible: true
+      visible: false
       collapsed: true
       topic: /move_base/AgribotPlannerROS/local_path
       color: "#ef2929"
+  - type: mapviz_plugins/navsat
+    name: new display
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gnss/filtered
+      color: "#00ff00"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 50
+  - type: mapviz_plugins/navsat
+    name: GNSS
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gnss
+      color: "#fce94f"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 50
+  - type: mapviz_plugins/gps
+    name: new display
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gpsfix
+      color: "#00ff00"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 1
+      show_laps: false
+      static_arrow_sizes: true
+      arrow_size: 284
+  - type: mapviz_plugins/gps
+    name: new display
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gpsfix/filtered
+      color: "#fce94f"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 1
+      show_laps: false
+      static_arrow_sizes: true
+      arrow_size: 270
+  - type: mapviz_plugins/measuring
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      main_color: "#000000"
+      bkgnd_color: "#ffffff"
+      show_bkgnd_color: true
+      show_measurements: true
+      font_size: 10
+      alpha: 0.5
