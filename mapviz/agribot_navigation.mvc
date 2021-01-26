@@ -9,9 +9,9 @@ show_status_bar: true
 show_capture_tools: true
 window_width: 1853
 window_height: 1025
-view_scale: 0.005289349
-offset_x: -0.9495801
-offset_y: 13.61066
+view_scale: 0.04346909
+offset_x: -4.654358
+offset_y: 11.30666
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -30,14 +30,14 @@ displays:
   - type: mapviz_plugins/path
     name: KML path
     config:
-      visible: false
+      visible: true
       collapsed: true
       topic: /agribot/move_base_monitor/path
       color: "#204a87"
   - type: mapviz_plugins/path
     name: Global path
     config:
-      visible: false
+      visible: true
       collapsed: true
       topic: /move_base/WaypointGlobalPlanner/global_plan
       color: "#19ff00"
@@ -102,18 +102,18 @@ displays:
   - type: mapviz_plugins/odometry
     name: global
     config:
-      visible: false
+      visible: true
       collapsed: true
       topic: /agribot/odom/global
       color: "#fc39ee"
-      draw_style: points
+      draw_style: arrows
       position_tolerance: 0
       buffer_size: 1
       show_laps: false
       show_covariance: true
       show_all_covariances: false
-      static_arrow_sizes: true
-      arrow_size: 345
+      static_arrow_sizes: false
+      arrow_size: 140
       show_timestamps: 0
   - type: mapviz_plugins/pointcloud2
     name: Front bumper pointcloud
@@ -147,7 +147,7 @@ displays:
   - type: mapviz_plugins/marker
     name: Global Planner Waypoints
     config:
-      visible: false
+      visible: true
       collapsed: true
       topic: /move_base/WaypointGlobalPlanner/waypoints
   - type: mapviz_plugins/marker
@@ -212,8 +212,8 @@ displays:
       position_tolerance: 0
       buffer_size: 1
       show_laps: false
-      static_arrow_sizes: true
-      arrow_size: 284
+      static_arrow_sizes: false
+      arrow_size: 132
   - type: mapviz_plugins/gps
     name: new display
     config:
@@ -225,13 +225,13 @@ displays:
       position_tolerance: 0
       buffer_size: 1
       show_laps: false
-      static_arrow_sizes: true
-      arrow_size: 270
+      static_arrow_sizes: false
+      arrow_size: 129
   - type: mapviz_plugins/measuring
     name: new display
     config:
-      visible: true
-      collapsed: false
+      visible: false
+      collapsed: true
       main_color: "#000000"
       bkgnd_color: "#ffffff"
       show_bkgnd_color: true
