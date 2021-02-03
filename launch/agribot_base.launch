@@ -7,9 +7,6 @@
   <!-- Main arguments -->
   <arg name="launch_type" default="$(env AGRIBOT_LAUNCH_TYPE)" />
 
-  <!-- Agribot map arguments  -->
-  <arg name="map_file" default="$(find agribot_map)/maps/moderna.yaml" />
-
   <!-- ########################## -->
   <!-- ###### Launch files ###### -->
   <!-- ########################## -->
@@ -24,9 +21,7 @@
   <include file="$(find agribot_localization)/launch/agribot_localization.launch"/>
 
   <!-- Agribot map -->
-  <include file="$(find agribot_map)/launch/agribot_map.launch">
-    <arg name="map_file" value="$(arg map_file)" />
-  </include>
+  <include file="$(find agribot_map)/launch/agribot_map.launch" />
 
   <!-- Agribot monitoring (send data to Cloud Firestore) -->
   <include file="$(find agribot_monitoring)/launch/agribot_monitoring.launch" />
