@@ -5,9 +5,6 @@
   <!-- Mapviz -->
   <include if="$(env AGRIBOT_MAPVIZ)" file="$(find agribot_bringup)/launch/bringup_mapviz.launch" />
 
-  <!-- GPSFix for mapviz visualization -->
-  <node pkg="agribot_localization" type="rewrite_navsatfix_to_gpsfix.py" name="rewrite_navsatfix_to_gpsfix" />
-
   <!-- smach viewer -->
   <node if="$(env AGRIBOT_SMACH_VIEWER)" name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" />
 

@@ -10,4 +10,7 @@
     <param name="local_xy_navsatfix_topic" value="/agribot/gnss" />
   </node>
 
+  <!-- GPSFix for mapviz visualization -->
+  <node pkg="agribot_localization" type="rewrite_navsatfix_to_gpsfix.py" name="rewrite_navsatfix_to_gpsfix" />
+
 </launch>
