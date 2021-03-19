@@ -25,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Front bumper pointcloud
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -90,6 +90,56 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        back_tpl_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_cylinder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_revolute_hitch_base_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_revolute_hitch_base_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_revolute_hitch_effector_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_revolute_hitch_effector_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_up_hit_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_upper_hitch_cylinder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_upper_hitch_prism_joint_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_tpl_upper_hitch_prism_joint_core_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -110,6 +160,56 @@ Visualization Manager:
           Show Trail: false
           Value: true
         front_right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_cylinder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_revolute_hitch_base_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_revolute_hitch_base_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_revolute_hitch_effector_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_revolute_hitch_effector_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_up_hit_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_upper_hitch_cylinder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_upper_hitch_prism_joint_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_tpl_upper_hitch_prism_joint_core_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -206,12 +306,12 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: Global Planner Costmap
       Topic: /move_base/global_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -351,8 +451,7 @@ Visualization Manager:
       Marker Topic: /agribot/vision_markers
       Name: Vision markers
       Namespaces:
-        Obstacle: true
-        Text: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -431,11 +530,21 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 0.699999988079071
+      Blocks: 3
+      Class: rviz_plugins/AerialMapDisplay
+      Draw Behind: true
+      Enabled: true
+      Name: AerialMapDisplay
+      Object URI: http://localhost:8082/wmts/gm_layer/gm_grid/{z}/{x}/{y}.png
+      Topic: /agribot/gnss/filtered
+      Value: true
+      Zoom: 19
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -459,25 +568,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 20.83926010131836
+      Distance: 51.64684295654297
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 6.769138813018799
-        Y: -3.7903997898101807
-        Z: -2.8625528812408447
+        X: 6.43410062789917
+        Y: -1.8862359523773193
+        Z: -2.8707942962646484
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7897961139678955
+      Pitch: 0.4447954595088959
       Target Frame: base_footprint
       Value: Orbit (rviz)
-      Yaw: 2.235417127609253
+      Yaw: 2.2172372341156006
     Saved: ~
 Window Geometry:
   Displays:
@@ -496,4 +605,4 @@ Window Geometry:
     collapsed: true
   Width: 1920
   X: 1920
-  Y: 0
+  Y: 102
