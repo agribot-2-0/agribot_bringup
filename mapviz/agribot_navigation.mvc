@@ -186,7 +186,7 @@ displays:
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gnss/filtered
+      topic: /agribot/gnss/bynav/filtered
       color: "#00ff00"
       draw_style: points
       position_tolerance: 0
@@ -196,7 +196,7 @@ displays:
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gnss
+      topic: /agribot/gnss/bynav
       color: "#fce94f"
       draw_style: points
       position_tolerance: 0

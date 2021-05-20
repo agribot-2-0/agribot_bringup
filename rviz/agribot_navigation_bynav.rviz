@@ -537,7 +537,7 @@ Visualization Manager:
       Enabled: true
       Name: AerialMapDisplay
       Object URI: http://localhost:8082/wmts/gm_layer/gm_grid/{z}/{x}/{y}.png
-      Topic: /agribot/gnss/filtered
+      Topic: /agribot/gnss/bynav/filtered
       Value: true
       Zoom: 19
   Enabled: true
