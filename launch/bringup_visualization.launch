@@ -1,8 +1,6 @@
 <launch>
-  <arg name="tf_source" default="$(env AGRIBOT_LOCALIZATION_TF_SOURCE)" />
-
   <!-- rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation_$(arg tf_source).rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agribot_bringup)/rviz/agribot_navigation.rviz" />
 
   <!-- Mapviz -->
   <include if="$(env AGRIBOT_MAPVIZ)" file="$(find agribot_bringup)/launch/bringup_mapviz.launch" />
