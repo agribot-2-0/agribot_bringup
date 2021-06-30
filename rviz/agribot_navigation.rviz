@@ -25,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Front bumper pointcloud
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -144,16 +144,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bumper_front_lidar_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bumper_front_lidar_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         chassis_link:
           Alpha: 1
           Show Axes: false
@@ -250,20 +240,12 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /agribot/navigation_manager/waypoints
-      Name: KML Waypoints
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
       Color: 0; 0; 255
       Enabled: true
-      Head Diameter: 0.30000001192092896
+      Head Diameter: 0.20000000298023224
       Head Length: 0.20000000298023224
       Length: 0.30000001192092896
       Line Style: Lines
@@ -273,11 +255,11 @@ Visualization Manager:
         X: 0
         Y: 0
         Z: 0
-      Pose Color: 255; 85; 255
-      Pose Style: None
+      Pose Color: 0; 0; 255
+      Pose Style: Arrows
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
-      Shaft Length: 0.10000000149011612
+      Shaft Length: 0.5
       Topic: /agribot/navigation_manager/path
       Unreliable: false
       Value: true
@@ -309,7 +291,7 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base/WaypointGlobalPlanner/global_plan
+      Topic: /move_base/AgribotGlobalPlanner/global_plan
       Unreliable: false
       Value: true
     - Alpha: 0.699999988079071
@@ -342,7 +324,7 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base/AgribotPlannerROS/local_path
+      Topic: /move_base/AgribotLocalPlanner/local_path
       Unreliable: false
       Value: true
     - Class: rviz/Marker
@@ -578,7 +560,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 51.64684295654297
+      Distance: 27.255687713623047
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
