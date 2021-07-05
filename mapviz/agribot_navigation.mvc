@@ -9,9 +9,9 @@ show_status_bar: true
 show_capture_tools: true
 window_width: 1853
 window_height: 1025
-view_scale: 0.04346909
-offset_x: -4.654358
-offset_y: 11.30666
+view_scale: 0.01843513
+offset_x: -2.656947
+offset_y: 3.524748
 use_latest_transforms: true
 background: "#555753"
 displays:
@@ -182,31 +182,31 @@ displays:
       topic: /move_base/AgribotPlannerROS/local_path
       color: "#ef2929"
   - type: mapviz_plugins/navsat
-    name: new display
+    name: Raw Bynav NavSatFix
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gnss/filtered
+      topic: /agribot/gnss/bynav
       color: "#00ff00"
       draw_style: points
       position_tolerance: 0
       buffer_size: 50
   - type: mapviz_plugins/navsat
-    name: GNSS
+    name: Filtered Bynav NavSatFix
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gnss
+      topic: /agribot/gnss/bynav/filtered
       color: "#fce94f"
       draw_style: points
       position_tolerance: 0
       buffer_size: 50
   - type: mapviz_plugins/gps
-    name: new display
+    name: Raw Bynav GPSFix
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gpsfix
+      topic: /agribot/gpsfix/bynav
       color: "#00ff00"
       draw_style: arrows
       position_tolerance: 0
@@ -215,12 +215,58 @@ displays:
       static_arrow_sizes: false
       arrow_size: 132
   - type: mapviz_plugins/gps
-    name: new display
+    name: Filtered Bynav GPSFix
     config:
       visible: true
       collapsed: true
-      topic: /agribot/gpsfix/filtered
+      topic: /agribot/gpsfix/bynav/filtered
       color: "#fce94f"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 1
+      show_laps: false
+      static_arrow_sizes: false
+      arrow_size: 129
+  - type: mapviz_plugins/navsat
+    name: Raw Hydrabox NavSatFix
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gnss/hydrabox
+      color: "#f57900"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 50
+  - type: mapviz_plugins/navsat
+    name: Filtered Hydrabox NavSatFix
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gnss/hydrabox/filtered
+      color: "#3465a4"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 50
+  - type: mapviz_plugins/gps
+    name: Raw Hydrabox GPSFix
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gpsfix/hydrabox
+      color: "#f57900"
+      draw_style: arrows
+      position_tolerance: 0
+      buffer_size: 1
+      show_laps: false
+      static_arrow_sizes: false
+      arrow_size: 132
+  - type: mapviz_plugins/gps
+    name: Filtered Hydrabox GPSFix
+    config:
+      visible: true
+      collapsed: true
+      topic: /agribot/gpsfix/hydrabox/filtered
+      color: "#3465a4"
       draw_style: arrows
       position_tolerance: 0
       buffer_size: 1

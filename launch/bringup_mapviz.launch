@@ -7,7 +7,7 @@
   <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
     <param name="local_xy_frame" value="map" />
     <param name="local_xy_origin" value="auto" />
-    <param name="local_xy_navsatfix_topic" value="/agribot/gnss" />
+    <param name="local_xy_navsatfix_topic" value="/agribot/gnss/filtered" />
   </node>
 
   <!-- GPSFix for mapviz visualization -->
