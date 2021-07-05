@@ -65,7 +65,7 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: false
-    - Alpha: 0.8999999761581421
+    - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -144,6 +144,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        bynav_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         chassis_link:
           Alpha: 1
           Show Axes: false
@@ -214,19 +218,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        gps_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        imu_link:
+        hydrabox_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
         inclinometer_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        magnetometer_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -262,14 +258,6 @@ Visualization Manager:
       Shaft Length: 0.5
       Topic: /agribot/navigation_manager/path
       Unreliable: false
-      Value: true
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /move_base/WaypointGlobalPlanner/waypoints
-      Name: Global Planner Waypoints
-      Namespaces:
-        {}
-      Queue Size: 100
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -329,36 +317,22 @@ Visualization Manager:
       Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /move_base/AgribotPlannerROS/next_goal
-      Name: Local Planner Next goal
+      Marker Topic: /move_base/AgribotLocalPlanner/goal_tolerance
+      Name: Local Goal Tolerance
       Namespaces:
-        {}
+        next_goal: true
       Queue Size: 100
       Value: true
-    - Class: rviz/Marker
-      Enabled: false
-      Marker Topic: /move_base/AgribotPlannerROS/predicted_path
-      Name: Local Planner Predicted path
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
-    - Class: rviz/Marker
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
       Enabled: true
-      Marker Topic: /move_base/AgribotPlannerROS/goal_range
-      Name: Local Planner Goal Range
-      Namespaces:
-        {}
-      Queue Size: 100
+      Name: Local Planner Costmap
+      Topic: /move_base/local_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
       Value: true
-    - Class: rviz/Marker
-      Enabled: false
-      Marker Topic: /move_base/AgribotPlannerROS/travelled_path
-      Name: Local Planner Travelled Path
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
       Covariance:
@@ -401,7 +375,7 @@ Visualization Manager:
       Enabled: true
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
-      Name: move_base/goal
+      Name: Move Base Goal
       Shaft Length: 1
       Shaft Radius: 0.05000000074505806
       Shape: Arrow
@@ -560,25 +534,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 27.255687713623047
+      Distance: 18.473636627197266
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 6.43410062789917
-        Y: -1.8862359523773193
-        Z: -2.8707942962646484
+        X: 2.088197946548462
+        Y: -3.4988505840301514
+        Z: 0.7781586647033691
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4447954595088959
+      Pitch: 1.0697951316833496
       Target Frame: base_footprint
       Value: Orbit (rviz)
-      Yaw: 2.2172372341156006
+      Yaw: 5.927247047424316
     Saved: ~
 Window Geometry:
   Displays:
@@ -596,5 +570,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1920
-  X: 1920
+  X: 0
   Y: 0
